@@ -12,7 +12,7 @@ int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3,
                struct gameState *state, int handPos, int *bonus);
 
-void drawNCards(int currentPlayer, struct gameState *state);
+void drawNCards(int currentPlayer, int num, struct gameState *state);
 /* Draw n cards for current player */
 
 int playBaron(int currentPlayer, int choice, struct gameState *state);
