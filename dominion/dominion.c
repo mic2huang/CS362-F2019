@@ -1127,7 +1127,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
     return 0;
 }
 
-void drawNCards(int currentPlayer, int, num, struct gameState *state){
+void drawNCards(int currentPlayer, int num, struct gameState *state){
     for (int i = 0; i < num; i++)
         {
             drawCard(currentPlayer, state);
