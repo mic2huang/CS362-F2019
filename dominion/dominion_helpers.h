@@ -12,4 +12,22 @@ int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3,
                struct gameState *state, int handPos, int *bonus);
 
+void drawNCards(int currentPlayer, struct gameState *state)
+/* Draw n cards for current player */
+
+int playBaron(int currentPlayer, int choice, struct gameState *state)
+/* Play Baron card */
+
+int playMinion(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos)
+/* Play Minion card */
+
+int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos)
+/* Play Ambassador card */
+
+int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
+/* Play Tribute card */
+
+int playMine(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos)
+/* Play Mine card */
+
 #endif
