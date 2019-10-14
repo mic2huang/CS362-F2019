@@ -1135,10 +1135,13 @@ void drawNCards(int currentPlayer, int num, struct gameState *state){
 }
 
 int playBaron(int currentPlayer, int choice, struct gameState *state){
-    state->numBuys++;//Increase buys by 1!
+    // BUG: not increase buys
+    //state->numBuys++;//Increase buys by 1!
     if (choice > 0) { //Boolean true or going to discard an estate
         int p = 0;//Iterator for hand!
-        int card_not_discarded = 1;//Flag for discard set!
+        
+        // BUG: never enter the loop
+        int card_not_discarded = 0;//Flag for discard set!
         while(card_not_discarded) {
             if (state->hand[currentPlayer][p] == estate) { //Found an estate card!
                 state->coins += 4;//Add 4 coins to the amount of coins
@@ -1197,7 +1200,8 @@ int playMinion(int currentPlayer, int choice1, int choice2, struct gameState *st
 
     if (choice1)
     {
-        state->coins = state->coins + 2;
+        // BUG: +4 coins instead of 2
+        state->coins = state->coins + 4;
     }
     else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
     {
@@ -1208,7 +1212,8 @@ int playMinion(int currentPlayer, int choice1, int choice2, struct gameState *st
         }
 
         //draw 4
-        drawNCards(currentPlayer, 4, state);
+        // BUG: draw 2 cards instead of 4
+        drawNCards(currentPlayer, 2, state);
 
         //other players discard hand and redraw if hand size > 4
         for (int i = 0; i < state->numPlayers; i++)
@@ -1236,7 +1241,8 @@ int playMinion(int currentPlayer, int choice1, int choice2, struct gameState *st
 int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos){
     int j = 0;		//used to check if player has enough cards to discard
     int i;
-    if (choice2 > 2 || choice2 < 0)
+    // BUG: && intead of ||
+    if (choice2 > 2 && choice2 < 0)
     {
         return -1;
     }
@@ -1262,7 +1268,8 @@ int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState
         printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
 
     //increase supply count for choosen card by amount being discarded
-    state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
+    //BUG: not increase supplyCount
+    //state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
 
     //each other player gains a copy of revealed card
     for (i = 0; i < state->numPlayers; i++)
@@ -1339,7 +1346,8 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state){
 
     for (i = 0; i <= 2; i ++) {
         if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
-            state->coins += 2;
+            // BUG: add 4 coins instead of 2
+            state->coins += 4;
         }
 
         else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall) { //Victory Card Found
@@ -1347,7 +1355,8 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state){
             drawCard(currentPlayer, state);
         }
         else { //Action Card
-            state->numActions = state->numActions + 2;
+            //BUG: add 3 action cards instead of 2
+            state->numActions = state->numActions + 3;
         }
     }
 
@@ -1355,7 +1364,9 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state){
 }
 
 int playMine(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos){
-    int j = state->hand[currentPlayer][choice1];  //store card we will trash
+    // BUG not store the card will be trashed
+    int j = 0;
+    //int j = state->hand[currentPlayer][choice1];  //store card we will trash
 
     if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
     {
@@ -1367,7 +1378,9 @@ int playMine(int currentPlayer, int choice1, int choice2, struct gameState *stat
         return -1;
     }
 
-    if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+    //BUG: not +3 to discarded card
+    //if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+    if ( getCost(state->hand[currentPlayer][choice1]) > getCost(choice2) )
     {
         return -1;
     }
