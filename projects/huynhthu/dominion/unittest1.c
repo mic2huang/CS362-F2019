@@ -140,7 +140,7 @@ int main() {
 
     assert(isGameover(&testG) == 1);
 
-	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
 
 	return 0;
