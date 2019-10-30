@@ -138,7 +138,7 @@ int main() {
 	assert(testG.coins == G.coins + xtraCoins);
     assert(testG.numBuys == G.numBuys + xtraBuys);
 
-    assert(isGameover(&testG) == 1);
+    assert(isGameOver(&testG) == 1);
 
 	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
