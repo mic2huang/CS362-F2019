@@ -29,10 +29,10 @@ player: player.c interface.o
 all: playdom player 
 
 unittest1: unittest1.c dominion.o rngs.o
-gcc -o cardtest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
 
 rununittests: unittest1 
-	./testDrawCard &> unittestresult.out
+	./unittest1 &> unittestresult.out
 	gcov dominion_helpers.c >> unittestresult.out
 	cat dominion_helpers.gcov >> unittestresult.out
 
