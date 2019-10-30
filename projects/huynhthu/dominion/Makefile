@@ -3,8 +3,9 @@ CFLAGS= -Wall -fpic -coverage -lm -std=c99
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
-dominion.o: dominion.h dominion.c rngs.o
+dominion.o: dominion.h dominion_helpers.h dominion.c dominion_helpers.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
+	gcc -c dominion_helpers.c -g  $(CFLAGS)
 
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
@@ -26,6 +27,14 @@ player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player 
+
+unittest1: unittest1.c dominion.o rngs.o
+gcc -o cardtest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+
+rununittests: unittest1 
+	./testDrawCard &> unittestresult.out
+	gcov dominion_helpers.c >> unittestresult.out
+	cat dominion_helpers.gcov >> unittestresult.out
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
