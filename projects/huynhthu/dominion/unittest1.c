@@ -51,7 +51,7 @@ int main() {
 	memcpy(&testG, &G, sizeof(struct gameState));
 
     // set estate card in current player's hand
-    testG->hand[thisPlayer][2] = estate; 
+    testG.hand[thisPlayer][2] = estate; 
 
     // set choice
 	choice1 = 1;
@@ -64,13 +64,13 @@ int main() {
     xtraCoins = 4;
 
 	printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
-    printf("discarded count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.disCardCount[thisPlayer] + discarded);
+    printf("discarded count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
 	printf("coins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
     printf("buys = %d, expected = %d\n", testG.numBuys, G.numBuys + xtraBuys);
 
 	
     assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] - discarded);
-	assert(testG.discardCount[thisPlayer] == G.disCardCount[thisPlayer] + discarded);
+	assert(testG.discardCount[thisPlayer] == G.discardCount[thisPlayer] + discarded);
 	assert(testG.coins == G.coins + xtraCoins);
     assert(testG.numBuys == G.numBuys + xtraBuys);
 
@@ -98,13 +98,13 @@ int main() {
     xtraCoins = 4;
 
 	printf("supply Estate = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate] - discarded);
-    printf("discarded count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.disCardCount[thisPlayer] + discarded);
+    printf("discarded count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
 	printf("coins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
     printf("buys = %d, expected = %d\n", testG.numBuys, G.numBuys + xtraBuys);
 
 	
     assert(testG.supplyCount[estate] == G.supplyCount[estate] - discarded);
-	assert(testG.discardCount[thisPlayer] == G.disCardCount[thisPlayer] + discarded);
+	assert(testG.discardCount[thisPlayer] == G.discardCount[thisPlayer] + discarded);
 	assert(testG.coins == G.coins + xtraCoins);
     assert(testG.numBuys == G.numBuys + xtraBuys);
 
@@ -119,7 +119,7 @@ int main() {
 	choice1 = 0;
 
     // set number of supply Estate
-    testG->supplyCount[estate] = 1;
+    testG.supplyCount[estate] = 1;
 
 	playBaron(thisPlayer, choice1, &testG);
 
@@ -128,13 +128,13 @@ int main() {
     xtraCoins = 4;
 
 	printf("supply Estate = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate] - discarded);
-    printf("discarded count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.disCardCount[thisPlayer] + discarded);
+    printf("discarded count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
 	printf("coins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
     printf("buys = %d, expected = %d\n", testG.numBuys, G.numBuys + xtraBuys);
 
 	
     assert(testG.supplyCount[estate] == G.supplyCount[estate] - discarded);
-	assert(testG.discardCount[thisPlayer] == G.disCardCount[thisPlayer] + discarded);
+	assert(testG.discardCount[thisPlayer] == G.discardCount[thisPlayer] + discarded);
 	assert(testG.coins == G.coins + xtraCoins);
     assert(testG.numBuys == G.numBuys + xtraBuys);
 
