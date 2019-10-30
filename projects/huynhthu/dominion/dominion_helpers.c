@@ -4,14 +4,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-int compare(const void* a, const void* b) {
-    if (*(int*)a > *(int*)b)
-        return 1;
-    if (*(int*)a < *(int*)b)
-        return -1;
-    return 0;
-}
-
 int playBaron(int currentPlayer, int choice, struct gameState *state){
     // BUG: not increase buys
     //state->numBuys++;//Increase buys by 1!
