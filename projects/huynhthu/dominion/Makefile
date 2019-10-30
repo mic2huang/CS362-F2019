@@ -3,8 +3,10 @@ CFLAGS= -Wall -fpic -coverage -lm -std=c99
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
-dominion.o: dominion_helpers.h dominion.h dominion_helpers.c dominion.c rngs.o
+dominion_helpers.o: dominion_helpers.h dominion_helpers.c
 	gcc -c dominion_helpers.c -g  $(CFLAGS)
+
+dominion.o: rngs.o dominion_helpers.o dominion.h dominion.c 
 	gcc -c dominion.c -g  $(CFLAGS)
 
 playdom: dominion.o playdom.c
