@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+projects/huynhthu/dominion/.vscode/c_cpp_properties.json
+projects/huynhthu/dominion/.vscode/tasks.json
+projects/huynhthu/dominion/CS362Pj.code-workspace
+projects/huynhthu/dominion/.vscode/launch.json
