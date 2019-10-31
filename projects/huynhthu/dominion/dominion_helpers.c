@@ -300,3 +300,15 @@ int playMine(int currentPlayer, int choice1, int choice2, struct gameState *stat
 
     return 0;
 }
+
+void testResult(int a, int b)
+{
+    if (a == b)
+    {
+        printf("Pass.\n");
+    }
+    else
+    {
+        printf("Fail.\n\n");
+    }
+}

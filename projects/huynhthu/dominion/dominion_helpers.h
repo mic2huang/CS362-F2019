@@ -30,4 +30,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state);
 int playMine(int currentPlayer, int choice1, int choice2, struct gameState *state, int handPos);
 /* Play Mine card */
 
+void testResult(int a, int b);
+/* Print test result */
+
 #endif

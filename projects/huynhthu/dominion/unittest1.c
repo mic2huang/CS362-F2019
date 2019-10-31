@@ -63,45 +63,21 @@ int main()
     xtraBuys = 1;
     xtraCoins = 4;
 
-    printf("1. Hand count should = %d\n", G.handCount[thisPlayer] - discarded);
-    if (testG.handCount[thisPlayer] == G.handCount[thisPlayer] - discarded)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
+    printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
+    testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
 
-    printf("2. Discarded count should = %d\n", G.discardCount[thisPlayer] + discarded);
-    if (testG.discardCount[thisPlayer] == G.discardCount[thisPlayer] + discarded)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("2. Discarded count = %d\n", testG.discardCount[thisPlayer]);
+    printf("Expected = %d\n", G.discardCount[thisPlayer] + discarded);
+    testResult(testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
 
-    printf("3. Coins should = %d\n", G.coins + xtraCoins);
-    if (testG.coins == G.coins + xtraCoins)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("3. Coins = %d\n", testG.coins);
+    printf("Expected = %d\n", G.coins + xtraCoins);
+    testResult(testG.coins, G.coins + xtraCoins);
 
-    printf("4. Num of buys should = %d\n", G.numBuys + xtraBuys);
-    if (testG.numBuys == G.numBuys + xtraBuys)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("4. Num of buys = %d\n", testG.numBuys);
+    printf("Expected = %d\n", G.numBuys + xtraBuys);
+    testResult(testG.numBuys, G.numBuys + xtraBuys);
 
     // ----------- TEST 2: --------------
     printf("TEST 2: choice = 1; NumOfBuys += 1; No Estate card in hand, gain an Estate anyway, Coins += 4\n");
@@ -126,45 +102,21 @@ int main()
     xtraBuys = 1;
     xtraCoins = 4;
 
-    printf("1. Supply Estate = %d\n", G.supplyCount[estate] - discarded);
-    if (testG.supplyCount[estate] == G.supplyCount[estate] - discarded)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
+    printf("Expected = %d\n", G.supplyCount[estate] - discarded);
+    testResult(testG.supplyCount[estate], G.supplyCount[estate] - discarded);
 
-    printf("2. Discarded count should = %d\n", G.discardCount[thisPlayer] + discarded);
-    if (testG.discardCount[thisPlayer] == G.discardCount[thisPlayer] + discarded)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("2. Discarded count = %d\n", testG.discardCount[thisPlayer]);
+    printf("Expected = %d\n", G.discardCount[thisPlayer] + discarded);
+    testResult(testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
 
-    printf("3. Coins should = %d\n", G.coins + xtraCoins);
-    if (testG.coins == G.coins + xtraCoins)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("3. Coins = %d\n", testG.coins);
+    printf("Expected = %d\n", G.coins + xtraCoins);
+    testResult(testG.coins, G.coins + xtraCoins);
 
-    printf("4. Num of buys should = %d\n", G.numBuys + xtraBuys);
-    if (testG.numBuys == G.numBuys + xtraBuys)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("4. Num of buys = %d\n", testG.numBuys);
+    printf("Expected = %d\n", G.numBuys + xtraBuys);
+    testResult(testG.numBuys, G.numBuys + xtraBuys);
 
     // ----------- TEST 3: --------------
 
@@ -185,55 +137,30 @@ int main()
     xtraBuys = 1;
     xtraCoins = 4;
 
-    printf("1. Supply Estate = %d\n", G.supplyCount[estate] - discarded);
-    if (testG.supplyCount[estate] == G.supplyCount[estate] - discarded)
+    printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
+    printf("Expected = %d\n", G.supplyCount[estate] - discarded);
+    testResult(testG.supplyCount[estate], G.supplyCount[estate] - discarded);
+
+    printf("2. Discarded count = %d\n", testG.discardCount[thisPlayer]);
+    printf("Expected = %d\n", G.discardCount[thisPlayer] + discarded);
+    testResult(testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
+
+    printf("3. Coins = %d\n", testG.coins);
+    printf("Expected = %d\n", G.coins + xtraCoins);
+    testResult(testG.coins, G.coins + xtraCoins);
+
+    printf("4. Num of buys = %d\n", testG.numBuys);
+    printf("Expected = %d\n", G.numBuys + xtraBuys);
+    testResult(testG.numBuys, G.numBuys + xtraBuys);
+
+    // gain all Estate card
+    for (i = 0; i < testG.supplyCount[estate]; i++)
     {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
+        playBaron(thisPlayer, choice1, &testG);
     }
 
-    printf("2. Discarded count should = %d\n", G.discardCount[thisPlayer] + discarded);
-    if (testG.discardCount[thisPlayer] == G.discardCount[thisPlayer] + discarded)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
-
-    printf("3. Coins should = %d\n", G.coins + xtraCoins);
-    if (testG.coins == G.coins + xtraCoins)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
-
-    printf("4. Num of buys should = %d\n", G.numBuys + xtraBuys);
-    if (testG.numBuys == G.numBuys + xtraBuys)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
-
-    printf("4. isGameOver should = 1\n");
-    if (isGameOver(&testG) == 1)
-    {
-        printf("Pass.\n");
-    }
-    else
-    {
-        printf("Fail.\n\n");
-    }
+    printf("5. isGameOver = %d\n", isGameOver(&testG));
+    testResult(isGameOver(&testG), 1);
 
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
