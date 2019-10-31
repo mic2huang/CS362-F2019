@@ -309,6 +309,6 @@ void testResult(int a, int b)
     }
     else
     {
-        printf("Fail.\n\n");
+        printf("Fail.\n");
     }
 }
