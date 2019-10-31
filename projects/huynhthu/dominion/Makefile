@@ -36,7 +36,7 @@ unittest1: unittest1.c dominion.o rngs.o
 rununittests: unittest1 
 	./unittest1 &> unittestresult.out
 	gcov dominion_helpers.c >> unittestresult.out
-	cat dominion_helpers.gcov >> unittestresult.out
+	cat dominion_helpers.c.gcov >> unittestresult.out
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
