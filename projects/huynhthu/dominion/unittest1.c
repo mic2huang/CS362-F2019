@@ -86,11 +86,11 @@ int main()
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // remove estate card in current player's hand
-    G.hand[thisPlayer][0] = steward;
-    G.hand[thisPlayer][1] = copper;
-    G.hand[thisPlayer][2] = duchy;
-    G.hand[thisPlayer][3] = ambassador;
-    G.hand[thisPlayer][4] = feast;
+    testG.hand[thisPlayer][0] = steward;
+    testG.hand[thisPlayer][1] = copper;
+    testG.hand[thisPlayer][2] = duchy;
+    testG.hand[thisPlayer][3] = ambassador;
+    testG.hand[thisPlayer][4] = feast;
 
     // set choice
     choice1 = 1;
@@ -120,7 +120,7 @@ int main()
 
     // ----------- TEST 3: --------------
 
-    printf("TEST 3: choice = 0; NumOfBuys += 1; No Estate in Supply after player gaining Estate card, gameover, Coins += 4\n");
+    printf("TEST 3: choice = 0; NumOfBuys += 1; Coins += 4; Gain an Estate. At the end, no Estate in Supply after player gaining Estate card, gameover\n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
