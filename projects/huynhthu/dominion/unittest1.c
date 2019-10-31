@@ -23,15 +23,11 @@
 
 int main()
 {
-    int newCards = 0;
     int discarded = 1;
     int xtraCoins = 0;
     int xtraBuys = 0;
-    int shuffledCards = 0;
 
-    int i, j, m;
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int remove1, remove2;
+    int choice1 = 0;
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
@@ -45,7 +41,7 @@ int main()
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
     // ----------- TEST 1: --------------
-    printf("TEST 1: choice = 1; NumOfBuys += 1; Discard an Estate, Coins += 4\n");
+    printf("TEST 1: choice = 1; NumOfBuys += 1; Coins += 4; Discard an Estate\n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
@@ -67,15 +63,11 @@ int main()
     printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
     testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
 
-    printf("2. Discarded count = %d\n", testG.discardCount[thisPlayer]);
-    printf("Expected = %d\n", G.discardCount[thisPlayer] + discarded);
-    testResult(testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
-
-    printf("3. Coins = %d\n", testG.coins);
+    printf("2. Coins = %d\n", testG.coins);
     printf("Expected = %d\n", G.coins + xtraCoins);
     testResult(testG.coins, G.coins + xtraCoins);
 
-    printf("4. Num of buys = %d\n", testG.numBuys);
+    printf("3. Num of buys = %d\n", testG.numBuys);
     printf("Expected = %d\n", G.numBuys + xtraBuys);
     testResult(testG.numBuys, G.numBuys + xtraBuys);
 
@@ -106,11 +98,7 @@ int main()
     printf("Expected = %d\n", G.supplyCount[estate] - discarded);
     testResult(testG.supplyCount[estate], G.supplyCount[estate] - discarded);
 
-    printf("2. Discarded count = %d\n", testG.discardCount[thisPlayer]);
-    printf("Expected = %d\n", G.discardCount[thisPlayer] + discarded);
-    testResult(testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
-
-    printf("3. Num of buys = %d\n", testG.numBuys);
+    printf("2. Num of buys = %d\n", testG.numBuys);
     printf("Expected = %d\n", G.numBuys + xtraBuys);
     testResult(testG.numBuys, G.numBuys + xtraBuys);
 
@@ -137,15 +125,11 @@ int main()
     printf("Expected = %d\n", 0);
     testResult(testG.supplyCount[estate], 0);
 
-    printf("2. Discarded count = %d\n", testG.discardCount[thisPlayer]);
-    printf("Expected = %d\n", G.discardCount[thisPlayer] + discarded);
-    testResult(testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
-
-    printf("3. Num of buys = %d\n", testG.numBuys);
+    printf("2. Num of buys = %d\n", testG.numBuys);
     printf("Expected = %d\n", G.numBuys + xtraBuys);
     testResult(testG.numBuys, G.numBuys + xtraBuys);
 
-    printf("4. isGameOver = %d\n", isGameOver(&testG));
+    printf("3. isGameOver = %d\n", isGameOver(&testG));
     testResult(isGameOver(&testG), 1);
 
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
