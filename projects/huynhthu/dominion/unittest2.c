@@ -79,7 +79,7 @@ int main()
     choice2 = 1;
 
     // set handCount of other player = 5
-    test.handCount[thisPlayer + 1] = 5;
+    testG.handCount[thisPlayer + 1] = 5;
 
     // call the test function
     playMinion(thisPlayer, choice1, choice2, &testG, handpos);
