@@ -1,5 +1,5 @@
 /*
- * unittest2.c
+ * unittest3.c
  *
  
  */
@@ -19,7 +19,7 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTFUNC "playMinion()"
+#define TESTFUNC "playAmbassador()"
 
 int main()
 {

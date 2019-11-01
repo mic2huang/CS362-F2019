@@ -30,11 +30,13 @@ player: player.c interface.o
 
 all: playdom player 
 
+unittest1: unittest1.c dominion.o rngs.o
+	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o dominion_helpers.o $(CFLAGS)
 
-unittest: unittest1.c unittest2.c dominion.o rngs.o
-	gcc -o unittest1 unittest2 -g  unittest1.c unittest2.c dominion.o rngs.o dominion_helpers.o $(CFLAGS)
+unittest2: unittest2.c dominion.o rngs.o
+	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o dominion_helpers.o $(CFLAGS)
 
-rununittests: unittest2 
+rununittests: unittest1 unittest2 
 	./unittest1 &> unittestresult.out
 	./unittest2 &> unittestresult.out
 	gcov dominion_helpers.c >> unittestresult.out
