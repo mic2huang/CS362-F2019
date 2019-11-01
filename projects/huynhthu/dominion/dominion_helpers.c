@@ -164,6 +164,8 @@ int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState
             supplySubtract++;
         }
     }
+    printf("supplySubtract = %d\n", supplySubtract);
+
 
     //discard played card from hand
     discardCard(handPos, currentPlayer, state, 0);
