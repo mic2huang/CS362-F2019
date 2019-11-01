@@ -27,7 +27,7 @@ int main()
     int xtraCoins = 0;
     int xtraBuys = 0;
 
-    int choice1 = 0, choice2 = 0, handpos = 0;
+    int choice1 = 0, choice2 = 0, handpos = 0, result = 0;
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
@@ -51,7 +51,7 @@ int main()
     choice2 = 0;
 
     // call the test function
-    int result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
+    result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
 
     printf("Result = %d\n", result);
     printf("Expected = %d\n", -1);
@@ -67,7 +67,7 @@ int main()
     choice1 = handpos;
 
     // call the test function
-    int result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
+    result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
 
     printf("Result = %d\n", result);
     printf("Expected = %d\n", -1);
@@ -91,7 +91,7 @@ int main()
     testG.hand[thisPlayer][4] = feast;
 
     // call the test function
-    int result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
+    result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
 
     printf("Result = %d\n", result);
     printf("Expected = %d\n", -1);
