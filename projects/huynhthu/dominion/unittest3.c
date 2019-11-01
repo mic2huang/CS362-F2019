@@ -23,10 +23,6 @@
 
 int main()
 {
-    int discarded = 1;
-    int xtraCoins = 0;
-    int xtraBuys = 0;
-
     int choice1 = 0, choice2 = 0, handpos = 0, result = 0;
     int seed = 1000;
     int numPlayers = 2;
@@ -41,14 +37,13 @@ int main()
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
     // ----------- TEST 1: --------------
-    printf("TEST 1: choice1 = 2; choice2 = 0; Invalid choices\n");
+    printf("TEST 1: choice2 = 3; Invalid choices\n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // set choice
-    choice1 = 2;
-    choice2 = 0;
+    choice2 = 3;
 
     // call the test function
     result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
@@ -117,7 +112,7 @@ int main()
     // call the test function
     playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
 
-    printf("1. This player supply count = %d\n", testG.supplyCount[testG.hand[thisPlayer][choice1]]);
+    printf("1. Supply count = %d\n", testG.supplyCount[testG.hand[thisPlayer][choice1]]);
     printf("Expected = %d\n", G.supplyCount[G.hand[thisPlayer][choice1]] + choice2);
     testResult(testG.supplyCount[testG.hand[thisPlayer][choice1]], G.supplyCount[G.hand[thisPlayer][choice1]] + choice2);
 
