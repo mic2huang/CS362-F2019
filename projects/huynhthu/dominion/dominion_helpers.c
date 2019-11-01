@@ -155,7 +155,7 @@ int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState
     state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
     
     //each other player gains a copy of revealed card
-    int supplySubtract = 0
+    int supplySubtract = 0;
     for (i = 0; i < state->numPlayers; i++)
     {
         if (i != currentPlayer)
