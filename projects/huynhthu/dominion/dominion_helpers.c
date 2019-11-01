@@ -152,7 +152,7 @@ int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState
 
     //increase supply count for choosen card by amount being discarded
     //BUG: not increase supplyCount
-    state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
+    // state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
     
     //each other player gains a copy of revealed card
     int supplySubtract = 0;
