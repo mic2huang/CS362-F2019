@@ -25,9 +25,9 @@ int main()
 {
     int discarded = 1;
     int xtraCoins = 0;
-    int xtraBuys = 0;
+    int xtraActions = 0;
 
-    int choice1 = 0, choice2 = 0;
+    int choice1 = 0, choice2 = 0, handpos = 0;
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
@@ -49,12 +49,12 @@ int main()
     // set choice
     choice1 = 1;
 
-    // call the test function
-    playMinion(thisPlayer, choice1, choice2, &testG, handpos);
-
     // set extra actions and extra coins
     xtraCoins = 2;
     xtraActions = 1;
+
+    // call the test function
+    playMinion(thisPlayer, choice1, choice2, &testG, handpos);
 
     printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
     printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
