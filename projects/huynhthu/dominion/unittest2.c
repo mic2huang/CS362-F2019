@@ -100,7 +100,7 @@ int main()
     printf("Expected = %d\n", G.numActions + xtraActions);
     testResult(testG.numActions, G.numActions + xtraActions);
 
-    printf("1. Other player hand count = %d\n", testG.handCount[thisPlayer + 1]);
+    printf("4. Other player hand count = %d\n", testG.handCount[thisPlayer + 1]);
     printf("Expected = %d\n", 4);
     testResult(testG.handCount[thisPlayer + 1], 4);
 

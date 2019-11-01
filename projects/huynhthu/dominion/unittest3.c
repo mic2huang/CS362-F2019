@@ -41,68 +41,93 @@ int main()
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
     // ----------- TEST 1: --------------
-    printf("TEST 1: choice1 = 1; choice2 = 0; numActions += 1; Coins +=2\n");
+    printf("TEST 1: choice1 = 2; choice2 = 0; Invalid choices\n");
+
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+
+    // set choice
+    choice1 = 2;
+    choice2 = 0;
+
+    // call the test function
+    int result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
+
+    printf("Result = %d\n", result;
+    printf("Expected = %d\n", -1);
+    testResult(result, -1);
+
+    // ----------- TEST 2: --------------
+    printf("TEST 2: choice1 = handpos; Invalid choice\n");
+
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+
+    // set choice
+    choice1 = handpos;
+
+    // call the test function
+    int result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
+
+    printf("Result = %d\n", result;
+    printf("Expected = %d\n", -1);
+    testResult(result, -1);
+
+    // ----------- TEST 3: --------------
+    printf("TEST 3: choice1 = 1; choice2 = 1; No other copy of card in hand; Invalid choice \n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // set choice
     choice1 = 1;
+    choice2 = 1;
+
+    // set cards in current player's hand
+    testG.hand[thisPlayer][0] = steward;
+    testG.hand[thisPlayer][1] = copper;
+    testG.hand[thisPlayer][2] = duchy;
+    testG.hand[thisPlayer][3] = ambassador;
+    testG.hand[thisPlayer][4] = feast;
 
     // call the test function
-    playMinion(thisPlayer, choice1, choice2, &testG, handpos);
+    int result = playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
 
-    // set extra actions and extra coins
-    xtraCoins = 2;
-    xtraActions = 1;
+    printf("Result = %d\n", result;
+    printf("Expected = %d\n", -1);
+    testResult(result, -1);
 
-    printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
-    printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
-    testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
-
-    printf("2. Coins = %d\n", testG.coins);
-    printf("Expected = %d\n", G.coins + xtraCoins);
-    testResult(testG.coins, G.coins + xtraCoins);
-
-    printf("3. Num of actions = %d\n", testG.numActions);
-    printf("Expected = %d\n", G.numActions + xtraActions);
-    testResult(testG.numActions, G.numActions + xtraActions);
-
-    // ----------- TEST 2: --------------
-    printf("TEST 2: choice1 = 0; choice2 = 1; numActions += 1; Discard hand, redraw 4, other players has 5 cards, discard, redraw\n");
+    // ----------- TEST 4: --------------
+    printf("TEST 4: choice1 = 1; choice2 = 1; Take 1 card from hand and put it on top of their Supply pile \n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // set choice
-    choice1 = 0;
+    choice1 = 1;
     choice2 = 1;
 
-    // set handCount of other player = 5
-    testG->handCount[thisPlayer + 1] = 5;
+    // set cards in current player's hand
+    testG.hand[thisPlayer][0] = ambassador;
+    testG.hand[thisPlayer][1] = minion;
+    testG.hand[thisPlayer][2] = minion;
+    testG.hand[thisPlayer][3] = ambassador;
+    testG.hand[thisPlayer][4] = feast;
 
     // call the test function
-    playMinion(thisPlayer, choice1, choice2, &testG, handpos);
+    playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
 
-    // set extra buys and extra coins
-    xtraActions = 1;
-    xtraCoins = 4;
+    printf("1. This player supply count = %d\n", testG.supplyCount[testG.hand[thisPlayer][choice1]]);
+    printf("Expected = %d\n", G.supplyCount[G.hand[thisPlayer][choice1]] + choice2);
+    testResult(testG.supplyCount[testG.hand[thisPlayer][choice1]], G.supplyCount[G.hand[thisPlayer][choice1]] + choice2);
 
-    printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
-    printf("Expected = %d\n", 4);
-    testResult(testG.handCount[thisPlayer], 4);
+    printf("2. Other player discard count = %d\n", testG.discardCount[thisPlayer + 1]);
+    printf("Expected = %d\n", G.discardCount[thisPlayer + 1] + 1);
+    testResult(testG.discardCount[thisPlayer + 1], G.discardCount[thisPlayer + 1] + 1);
 
-    printf("2. Coins = %d\n", testG.coins);
-    printf("Expected = %d\n", G.coins + xtraCoins);
-    testResult(testG.coins, G.coins + xtraCoins);
-
-    printf("3. Num of actions = %d\n", testG.numActions);
-    printf("Expected = %d\n", G.numActions + xtraActions);
-    testResult(testG.numActions, G.numActions + xtraActions);
-
-    printf("1. Other player hand count = %d\n", testG.handCount[thisPlayer + 1]);
-    printf("Expected = %d\n", 4);
-    testResult(testG.handCount[thisPlayer + 1], 4);
+    printf("3. Played card count = %d\n", testG.playedCardCount);
+    printf("Expected = %d\n", G.playedCardCount + 1);
+    testResult(testG.playedCardCount, G.playedCardCount + 1);
 
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
