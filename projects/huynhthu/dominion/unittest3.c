@@ -108,6 +108,9 @@ int main()
     testG.hand[thisPlayer][2] = minion;
     testG.hand[thisPlayer][3] = ambassador;
     testG.hand[thisPlayer][4] = feast;
+    printf("1. Supply count before test = %d\n", testG.supplyCount[testG.hand[thisPlayer][choice1]]);
+
+    printf("expected before test = %d\n", G.supplyCount[testG.hand[thisPlayer][choice1]]);
 
     // call the test function
     playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
