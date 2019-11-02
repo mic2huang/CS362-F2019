@@ -224,11 +224,11 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
             shuffle(nextPlayer, state); //Shuffle the deck
         }
         tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer] - 1];
-        state->deck[nextPlayer][state->deckCount[nextPlayer]] = -1;
-        state->deckCount[nextPlayer]--;
+        state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
+        //state->deckCount[nextPlayer]--;
         tributeRevealedCards[1] = state->deck[nextPlayer][state->deckCount[nextPlayer] - 1];
-        state->deck[nextPlayer][state->deckCount[nextPlayer]] = -1;
-        state->deckCount[nextPlayer]--;
+        state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
+        //state->deckCount[nextPlayer]--;
         printf("deck after reveal 2 = %d\n", state->deckCount[nextPlayer]);
     }
 
