@@ -212,7 +212,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
     {
         if (state->deckCount[nextPlayer] == 0)
         {
-            for (i = 0; i < state->discardCount[nextPlayer]; i++)
+            for (i = 0; i < 2; i++)
             {
                 state->deck[nextPlayer][i] = state->discard[nextPlayer][i]; //Move to deck
                 state->deckCount[nextPlayer]++;
