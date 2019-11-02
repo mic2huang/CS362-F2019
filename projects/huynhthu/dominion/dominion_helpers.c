@@ -229,7 +229,6 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         tributeRevealedCards[1] = state->deck[nextPlayer][state->deckCount[nextPlayer] - 1];
         state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
         //state->deckCount[nextPlayer]--;
-        printf("deck after reveal 2 = %d\n", state->deckCount[nextPlayer]);
     }
 
     if (tributeRevealedCards[0] == tributeRevealedCards[1])
