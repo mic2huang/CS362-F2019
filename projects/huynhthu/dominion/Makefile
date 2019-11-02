@@ -50,7 +50,8 @@ rununittests: unittest1 unittest2 unittest3 unittest4 unittest5
 	./unittest2 >> unittestresult.out
 	./unittest3 >> unittestresult.out
 	./unittest4 >> unittestresult.out
-	gcov dominion_helpers.c >> unittestresult.out
+	./unittest5 >> unittestresult.out
+	gcov -b -f dominion_helpers.c >> unittestresult.out
 	cat dominion_helpers.c.gcov >> unittestresult.out
 
 clean:
