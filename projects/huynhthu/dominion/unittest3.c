@@ -113,8 +113,8 @@ int main()
     playAmbassador(thisPlayer, choice1, choice2, &testG, handpos);
     
     printf("1. Supply count = %d\n", testG.supplyCount[testG.hand[thisPlayer][choice1]]);
-    printf("Expected = %d\n", G.supplyCount[testG.hand[thisPlayer][choice1]] + 1);
-    testResult(testG.supplyCount[testG.hand[thisPlayer][choice1]], G.supplyCount[testG.hand[thisPlayer][choice1]]);
+    printf("Expected = %d\n", G.supplyCount[testG.hand[thisPlayer][choice1]] + choice2);
+    testResult(testG.supplyCount[testG.hand[thisPlayer][choice1]], G.supplyCount[testG.hand[thisPlayer][choice1]]  + choice2);
 
     printf("2. Other player discard count = %d\n", testG.discardCount[thisPlayer + 1]);
     printf("Expected = %d\n", G.discardCount[thisPlayer + 1] + 1);
