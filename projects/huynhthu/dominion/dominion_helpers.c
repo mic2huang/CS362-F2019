@@ -163,12 +163,12 @@ int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState
         }
     }
 
-    printf("supply after gain = %d\n", state->supplyCount[state->hand[currentPlayer][choice1]);
+    printf("supply after gain = %d\n", state->supplyCount[state->hand[currentPlayer][choice1]]);
 
     //discard played card from hand
     discardCard(handPos, currentPlayer, state, 0);
 
-    printf("supply after discard1 = %d\n", state->supplyCount[state->hand[currentPlayer][choice1]);
+    printf("supply after discard1 = %d\n", state->supplyCount[state->hand[currentPlayer][choice1]]);
 
     //trash copies of cards returned to supply
     for (j = 0; j < choice2; j++)
@@ -182,7 +182,7 @@ int playAmbassador(int currentPlayer, int choice1, int choice2, struct gameState
             }
         }
     }
-    printf("supply after discard2 = %d\n", state->supplyCount[state->hand[currentPlayer][choice1]);
+    printf("supply after discard2 = %d\n", state->supplyCount[state->hand[currentPlayer][choice1]]);
 
     return 0;
 }
