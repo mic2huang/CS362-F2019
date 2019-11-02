@@ -229,10 +229,12 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
         state->deckCount[nextPlayer]--;
         printf("REVEAL\n");
-        printf(tributeRevealedCards[0]);
-        printf("\n");
-        printf(tributeRevealedCards[1]);
-        printf("\n");
+        if(tributeRevealedCards[0] == baron){
+            printf("1 = baron\n");
+        }
+        if(tributeRevealedCards[1] == baron){
+            printf("2 = baron\n");
+        }
     }
 
     if (tributeRevealedCards[0] == tributeRevealedCards[1])
