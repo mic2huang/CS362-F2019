@@ -218,7 +218,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
                 state->deckCount[nextPlayer]++;
                 state->discard[nextPlayer][i] = -1;
                 state->discardCount[nextPlayer]--;
-                printf("move to deck\n")
+                printf("move to deck\n");
             }
 
             shuffle(nextPlayer, state); //Shuffle the deck
