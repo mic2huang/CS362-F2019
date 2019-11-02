@@ -212,7 +212,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
     {
         if (state->deckCount[nextPlayer] == 0)
         {
-            printf("Enter else if 1");
+            printf("Enter else if 1\n");
             for (i = 0; i < state->discardCount[nextPlayer]; i++)
             {
                 state->deck[nextPlayer][i] = state->discard[nextPlayer][i]; //Move to deck
@@ -233,7 +233,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
 
     if (tributeRevealedCards[0] == tributeRevealedCards[1])
     { //If we have a duplicate card, just drop one
-        printf("enter if 2");
+        printf("enter if 2\n");
         state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
         state->playedCardCount++;
         tributeRevealedCards[1] = -1;
@@ -256,7 +256,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         { //Action Card
             //BUG: add 3 action cards instead of 2
             state->numActions = state->numActions + 3;
-            printf("action  = %d", state->numActions);
+            printf("action  = %d\n", state->numActions);
         }
     }
 
