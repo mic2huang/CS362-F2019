@@ -25,6 +25,7 @@ int main()
 {
     int xtraCoins = 2;
     int xtraCards = 2;
+    int xtraActions = 2;
 
     int seed = 1000;
     int numPlayers = 2;
