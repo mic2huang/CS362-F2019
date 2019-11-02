@@ -1162,6 +1162,7 @@ int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
 
     //decrease number in supply pile
     state->supplyCount[supplyPos]--;
+    printf("SUPPLY COUNT after subtracted = %d \n", state->supplyCount[supplyPos]);
 
     return 0;
 }
