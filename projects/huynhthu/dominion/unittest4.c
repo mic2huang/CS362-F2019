@@ -50,7 +50,7 @@ int main()
     // set number of discardCound and deckCount of next player
     testG.discardCount[nextPlayer] = 0;
     testG.deckCount[nextPlayer] = 1;
-    deckCountBefore = testG.deckCount[nextPlayer]
+    deckCountBefore = testG.deckCount[nextPlayer];
     testG.deck[nextPlayer][testG.deckCount[nextPlayer] -1] = copper;
 
     // call the test function
