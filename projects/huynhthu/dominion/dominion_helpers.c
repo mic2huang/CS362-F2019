@@ -218,7 +218,6 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
                 state->deckCount[nextPlayer]++;
                 state->discard[nextPlayer][i] = -1;
                 state->discardCount[nextPlayer]--;
-                state->deckCount[nextPlayer]);
             }
 
             shuffle(nextPlayer, state); //Shuffle the deck
@@ -226,6 +225,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer] - 1];
         state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
         //state->deckCount[nextPlayer]--;
+        
         tributeRevealedCards[1] = state->deck[nextPlayer][state->deckCount[nextPlayer] - 1];
         state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
         //state->deckCount[nextPlayer]--;
