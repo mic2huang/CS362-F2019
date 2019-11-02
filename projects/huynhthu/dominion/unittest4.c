@@ -26,6 +26,7 @@ int main()
     int xtraCoins = 2;
     int xtraCards = 2;
     int xtraActions = 2;
+    int discardCountBefore = 0, deckCountBefore = 0;
 
     int seed = 1000;
     int numPlayers = 2;
@@ -49,14 +50,15 @@ int main()
     // set number of discardCound and deckCount of next player
     testG.discardCount[nextPlayer] = 0;
     testG.deckCount[nextPlayer] = 1;
+    deckCountBefore = testG.deckCount[nextPlayer]
     testG.deck[nextPlayer][testG.deckCount[nextPlayer] -1] = copper;
 
     // call the test function
     playTribute(thisPlayer, nextPlayer, &testG);
 
     printf("1. Next player's deckCount = %d\n", testG.deckCount[nextPlayer]);
-    printf("Expected = %d\n", G.deckCount[nextPlayer] - 1);
-    testResult(testG.deckCount[nextPlayer], G.deckCount[nextPlayer] - 1);
+    printf("Expected = %d\n", deckCountBefore - 1);
+    testResult(testG.deckCount[nextPlayer], deckCountBefore - 1);
 
     printf("2. This player's coin = %d\n", testG.coins);
     printf("Expected = %d\n", G.coins + xtraCoins);
@@ -70,28 +72,30 @@ int main()
 
     // set number of discardCound and deckCount of next player
     testG.discardCount[nextPlayer] = 1;
+    discardCountBefore = testG.discardCount[nextPlayer];
     testG.deckCount[nextPlayer] = 0;
     testG.deck[nextPlayer][testG.discardCount[nextPlayer] -1] = estate;
 
     // call the test function
     playTribute(thisPlayer, nextPlayer, &testG);
 
-    printf("1. Next player's deckCount = %d\n", testG.deckCount[nextPlayer]);
-    printf("Expected = %d\n", G.deckCount[nextPlayer] - 1);
-    testResult(testG.deckCount[nextPlayer], G.deckCount[nextPlayer] - 1);
+    printf("1. Next player's dicardCount = %d\n", testG.discardCount[nextPlayer]);
+    printf("Expected = %d\n", discardCountBefore - 1);
+    testResult(testG.discardCount[nextPlayer], discardCountBefore - 1);
 
     printf("2. This player's handCount = %d\n", testG.handCount[thisPlayer]);
     printf("Expected = %d\n", G.handCount[thisPlayer] + xtraCards);
     testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] + xtraCards);
 
     // ----------- TEST 3: --------------
-    printf("TEST 3: Next player's discardCount = 2, deckCount = 0; Reveal 2 Actions card, drop 1, actions +=4\n");
+    printf("TEST 3: Next player's discardCount = 2, deckCount = 0; Reveal 2 Actions card, drop 1, actions +=2\n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // set number of discardCound and deckCount of next player
     testG.discardCount[nextPlayer] = 2;
+    discardCountBefore = testG.discardCount[nextPlayer];
     testG.deckCount[nextPlayer] = 0;
     testG.discard[nextPlayer][0] = baron;
     testG.discard[nextPlayer][1] = baron;
@@ -100,8 +104,8 @@ int main()
     playTribute(thisPlayer, nextPlayer, &testG);
 
     printf("1. Next player's discardCount = %d\n", testG.discardCount[nextPlayer]);
-    printf("Expected = %d\n", G.discardCount[nextPlayer] - 2);
-    testResult(testG.discardCount[nextPlayer], G.discardCount[nextPlayer] - 2);
+    printf("Expected = %d\n", discardCountBefore - 2);
+    testResult(testG.discardCount[nextPlayer], discardCountBefore - 2);
 
     printf("2. This player's num of actions = %d\n", testG.numActions);
     printf("Expected = %d\n", G.numActions + xtraActions);
