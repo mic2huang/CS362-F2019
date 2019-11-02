@@ -7,8 +7,8 @@
 /*
  * Include the following lines in your makefile:
  *
- * unittest1: unittest1.c dominion.o rngs.o
- *      gcc -o cardtest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+ * unittest3: unittest3.c dominion.o rngs.o
+ *      gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
  */
 
 #include "dominion.h"
