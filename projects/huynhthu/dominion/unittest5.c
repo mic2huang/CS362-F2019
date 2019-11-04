@@ -19,19 +19,17 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTFUNC "playTribute()"
+#define TESTFUNC "playMine()"
 
 int main()
 {
     int xtraCoins = 2;
-    int xtraCards = 2;
-    int xtraActions = 2;
-    int discardCountBefore = 0, deckCountBefore = 0;
+    int choice1 = 0, choice2 = 0, handpos = 0;
+    int result = 0;
 
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
-    int nextPlayer = thisPlayer + 1;
     struct gameState G, testG;
     int k[10] = {baron, ambassador, adventurer, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute};
@@ -42,74 +40,97 @@ int main()
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
     // ----------- TEST 1: --------------
-    printf("TEST 1: Next player's discardCount = 0, deckCount = 1; Reveal a Treasure card, coins += 2\n");
+    printf("TEST 1: choice1 = 0; Choose invalid card to trash\n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    // set number of discardCound and deckCount of next player
-    testG.discardCount[nextPlayer] = 0;
-    testG.deckCount[nextPlayer] = 1;
-    deckCountBefore = testG.deckCount[nextPlayer];
-    testG.deck[nextPlayer][testG.deckCount[nextPlayer] -1] = copper;
+    // set the choice
+    choice1 = 0;
 
+    // set the card of choice to be invalid
+    testG.hand[thisPlayer][0] = estate;
+    
     // call the test function
-    playTribute(thisPlayer, nextPlayer, &testG);
+    result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
 
-    printf("1. Next player's deckCount = %d\n", testG.deckCount[nextPlayer]);
-    printf("Expected = %d\n", deckCountBefore - 1);
-    testResult(testG.deckCount[nextPlayer], deckCountBefore - 1);
-
-    printf("2. This player's coin = %d\n", testG.coins);
-    printf("Expected = %d\n", G.coins + xtraCoins);
-    testResult(testG.coins, G.coins + xtraCoins);
+    printf("Result = %d\n", result);
+    printf("Expected = %d\n", -1);
+    testResult(result, -1);
 
     // ----------- TEST 2: --------------
-    printf("TEST 2: Next player's discardCount = 1, deckCount = 0; Reveal a Victory card, draw 2 cards\n");
+    printf("TEST 2: choice2 = 0; Choose invalid card to gain\n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    // set number of discardCound and deckCount of next player
-    testG.discardCount[nextPlayer] = 1;
-    discardCountBefore = testG.discardCount[nextPlayer];
-    testG.deckCount[nextPlayer] = 0;
-    testG.deck[nextPlayer][testG.discardCount[nextPlayer] -1] = estate;
+    // set the choice
+    choice1 = 0
+    choice2 = 0;
 
+    // set the card
+    testG.hand[thisPlayer][0] = copper;
+    
     // call the test function
-    playTribute(thisPlayer, nextPlayer, &testG);
+    result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
 
-    printf("1. Next player's dicardCount = %d\n", testG.discardCount[nextPlayer]);
-    printf("Expected = %d\n", discardCountBefore - 1);
-    testResult(testG.discardCount[nextPlayer], discardCountBefore - 1);
-
-    printf("2. This player's handCount = %d\n", testG.handCount[thisPlayer]);
-    printf("Expected = %d\n", G.handCount[thisPlayer] + xtraCards);
-    testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] + xtraCards);
+    printf("Result = %d\n", result);
+    printf("Expected = %d\n", -1);
+    testResult(result, -1);
 
     // ----------- TEST 3: --------------
-    printf("TEST 3: Next player's discardCount = 2, deckCount = 0; Reveal 2 Actions card, drop 1, actions +=2\n");
+    printf("TEST 3: choice1 = 1 (copper); choice2 = gold; Choose invalid card to gain\n");
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    // set number of discardCound and deckCount of next player
-    testG.discardCount[nextPlayer] = 2;
-    discardCountBefore = testG.discardCount[nextPlayer];
-    testG.deckCount[nextPlayer] = 0;
-    testG.discard[nextPlayer][0] = baron;
-    testG.discard[nextPlayer][1] = baron;
+    // set the choice
+    choice1 = 1;
+    choice2 = gold;
 
+    // set handpos
+    handpos = 1;
+
+    // set the card of choice to be invalid
+    testG.hand[thisPlayer][1] = copper;
+    
     // call the test function
-    playTribute(thisPlayer, nextPlayer, &testG);
+    result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
 
-    printf("1. Next player's discardCount = %d\n", testG.discardCount[nextPlayer]);
-    printf("Expected = %d\n", discardCountBefore - 2);
-    testResult(testG.discardCount[nextPlayer], discardCountBefore - 2);
+    printf("Result = %d\n", result);
+    printf("Expected = %d\n", -1);
+    testResult(result, -1);
 
-    printf("2. This player's num of actions = %d\n", testG.numActions);
-    printf("Expected = %d\n", G.numActions + xtraActions);
-    testResult(testG.numActions, G.numActions + xtraActions);
+    // ----------- TEST 4: --------------
+    printf("TEST 4: choice1 = 1 (copper); choice2 = copper; \n");
+
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+
+    // set the choice
+    choice1 = 1;
+    choice2 = copper;
+
+    // set handpos
+    handpos = 1;
+
+    // set the cards for choice to be invalid
+    testG.hand[thisPlayer][1] = copper;
+    
+    // call the test function
+    result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
+
+    printf("1. Gain card = %d\n", testG.hand[thisPlayer][testG.handCount[thisPlayer]]);
+    printf("Expected = %d\n", choice2);
+    testResult(testG.hand[thisPlayer][testG.handCount[thisPlayer]], choice2);
+    
+    printf("2. Hand count = %d\n", testG.handCount[thisPlayer]);
+    printf("Expected = %d\n", G.handCount[thisPlayer] + 1);
+    testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] + 1);
+
+    printf("3. Played count = %d\n", testG.playedCardCount);
+    printf("Expected = %d\n", G.playedCardCount + 1);
+    testResult(testG.playedCardCount, G.playedCardCount + 1);
 
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 

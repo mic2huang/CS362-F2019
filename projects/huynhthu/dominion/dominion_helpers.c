@@ -61,7 +61,7 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
         if (supplyCount(estate, state) > 0)
         {
             gainCard(estate, state, 0, currentPlayer); //Gain an estate
-
+            // BUG
             // state->supplyCount[estate]--; //Decrement Estates
             if (supplyCount(estate, state) == 0)
             {
@@ -237,7 +237,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         state->playedCardCount++;
         tributeRevealedCards[1] = -1;
     }
-
+    // BUG loop 3 times instead of number of revealed card
     for (i = 0; i <= 2; i++)
     {
         if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold)
@@ -272,14 +272,17 @@ int playMine(int currentPlayer, int choice1, int choice2, struct gameState *stat
         return -1;
     }
 
-    if (choice2 > treasure_map || choice2 < curse)
+    if (choice2 < copper || choice2 > gold)
+    // if (choice2 > treasure_map || choice2 < curse)
     {
         return -1;
     }
 
     //BUG: not +3 to discarded card
     //if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
-    if (getCost(state->hand[currentPlayer][choice1]) > getCost(choice2))
+    // if (getCost(state->hand[currentPlayer][choice1]) > getCost(choice2))
+    // correct code
+    if ( (getCost(state->hand[currentPlayer][choice1]) + 3) < getCost(choice2) )
     {
         return -1;
     }
@@ -294,6 +297,8 @@ int playMine(int currentPlayer, int choice1, int choice2, struct gameState *stat
     {
         if (state->hand[currentPlayer][i] == j)
         {
+            // correct
+            //discardCard(handPos, currentPlayer, state, 1);
             discardCard(i, currentPlayer, state, 0);
             break;
         }

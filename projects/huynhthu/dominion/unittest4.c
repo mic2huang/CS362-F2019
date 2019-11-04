@@ -47,7 +47,7 @@ int main()
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    // set number of discardCound and deckCount of next player
+    // set number of discardCount and deckCount of next player
     testG.discardCount[nextPlayer] = 0;
     testG.deckCount[nextPlayer] = 1;
     deckCountBefore = testG.deckCount[nextPlayer];
@@ -93,7 +93,7 @@ int main()
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    // set number of discardCound and deckCount of next player
+    // set number of discardCount and deckCount of next player
     testG.discardCount[nextPlayer] = 2;
     discardCountBefore = testG.discardCount[nextPlayer];
     testG.deckCount[nextPlayer] = 0;
