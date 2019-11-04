@@ -295,7 +295,6 @@ int playMine(int currentPlayer, int choice1, int choice2, struct gameState *stat
     //discard trashed card
     for (int i = 0; i < state->handCount[currentPlayer]; i++)
     {
-        printf("after card %d = %d\n", i, state->hand[currentPlayer][i]);
         if (state->hand[currentPlayer][i] == j)
         {
             // correct
