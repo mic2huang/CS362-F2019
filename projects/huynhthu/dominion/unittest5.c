@@ -97,9 +97,18 @@ int main()
     testG.hand[thisPlayer][2] = duchy;
     testG.hand[thisPlayer][3] = ambassador;
     testG.hand[thisPlayer][4] = feast;
+
+    for (int i = 0; i < testG.handCount[thisPlayer]; i++)
+    {
+        printf("before calling card %d = %d\n", i, state->hand[currentPlayer][i]);
+    }
     
     // call the test function
     result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
+
+    {
+        printf("after calling card %d = %d\n", i, state->hand[currentPlayer][i]);
+    }
 
     printf("Result = %d\n", result);
     printf("Expected = %d\n", -1);

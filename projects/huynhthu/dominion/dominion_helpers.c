@@ -286,10 +286,7 @@ int playMine(int currentPlayer, int choice1, int choice2, struct gameState *stat
     {
         return -1;
     }
-    for (int i = 0; i < state->handCount[currentPlayer]; i++)
-    {
-        printf("before card %d = %d\n", i, state->hand[currentPlayer][i]);
-    }
+    
     gainCard(choice2, state, 2, currentPlayer);
 
     //discard card from hand
