@@ -100,14 +100,15 @@ int main()
 
     for (int i = 0; i < testG.handCount[thisPlayer]; i++)
     {
-        printf("before calling card %d = %d\n", i, state->hand[currentPlayer][i]);
+        printf("before calling card %d = %d\n", i, testG.hand[thisPlayer][i]);
     }
     
     // call the test function
     result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
 
+    for (int i = 0; i < testG.handCount[thisPlayer]; i++)
     {
-        printf("after calling card %d = %d\n", i, state->hand[currentPlayer][i]);
+        printf("after calling card %d = %d\n", i, testG.hand[thisPlayer][i]);
     }
 
     printf("Result = %d\n", result);
