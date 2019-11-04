@@ -120,15 +120,11 @@ int main()
     // call the test function
     result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
 
-    printf("1. Gain card = %d\n", testG.hand[thisPlayer][testG.handCount[thisPlayer]]);
-    printf("Expected = %d\n", choice2);
-    testResult(testG.hand[thisPlayer][testG.handCount[thisPlayer]], choice2);
-    
-    printf("2. Hand count = %d\n", testG.handCount[thisPlayer]);
-    printf("Expected = %d\n", G.handCount[thisPlayer] + 1);
-    testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] + 1);
+    printf("1. Card to be trashed = %d\n", testG.hand[currentPlayer][choice1]);
+    printf("Expected = %d\n", -1);
+    testResult(testG.hand[currentPlayer][choice1], -1);
 
-    printf("3. Played count = %d\n", testG.playedCardCount);
+    printf(". Played count = %d\n", testG.playedCardCount);
     printf("Expected = %d\n", G.playedCardCount + 1);
     testResult(testG.playedCardCount, G.playedCardCount + 1);
 
