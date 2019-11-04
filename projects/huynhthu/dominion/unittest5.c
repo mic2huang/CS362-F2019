@@ -90,26 +90,12 @@ int main()
 
     // set handpos
     handpos = 1;
-
-    // set the card of choice to be invalid
-    testG.hand[thisPlayer][0] = curse;
+    
+    // set the cards for choice to be invalid
     testG.hand[thisPlayer][1] = copper;
-    testG.hand[thisPlayer][2] = duchy;
-    testG.hand[thisPlayer][3] = ambassador;
-    testG.hand[thisPlayer][4] = feast;
-
-    for (int i = 0; i < testG.handCount[thisPlayer]; i++)
-    {
-        printf("before calling card %d = %d\n", i, testG.hand[thisPlayer][i]);
-    }
     
     // call the test function
     result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
-
-    for (int i = 0; i < testG.handCount[thisPlayer]; i++)
-    {
-        printf("after calling card %d = %d\n", i, testG.hand[thisPlayer][i]);
-    }
 
     printf("Result = %d\n", result);
     printf("Expected = %d\n", -1);
@@ -128,8 +114,12 @@ int main()
     // set handpos
     handpos = 1;
 
-    // set the cards for choice to be invalid
+    // set the card of choice to be invalid
+    testG.hand[thisPlayer][0] = curse;
     testG.hand[thisPlayer][1] = copper;
+    testG.hand[thisPlayer][2] = duchy;
+    testG.hand[thisPlayer][3] = ambassador;
+    testG.hand[thisPlayer][4] = feast;
     
     // call the test function
     result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
