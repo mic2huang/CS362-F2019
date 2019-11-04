@@ -92,7 +92,11 @@ int main()
     handpos = 1;
 
     // set the card of choice to be invalid
+    testG.hand[thisPlayer][0] = steward;
     testG.hand[thisPlayer][1] = copper;
+    testG.hand[thisPlayer][2] = duchy;
+    testG.hand[thisPlayer][3] = ambassador;
+    testG.hand[thisPlayer][4] = feast;
     
     // call the test function
     result = playMine(thisPlayer, choice1, choice2, &testG, handpos);
@@ -124,7 +128,7 @@ int main()
     printf("Expected = %d\n", -1);
     testResult(testG.hand[thisPlayer][choice1], -1);
 
-    printf(". Played count = %d\n", testG.playedCardCount);
+    printf("2. Played count = %d\n", testG.playedCardCount);
     printf("Expected = %d\n", G.playedCardCount + 1);
     testResult(testG.playedCardCount, G.playedCardCount + 1);
 
