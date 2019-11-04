@@ -255,6 +255,7 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         { //Action Card
             //BUG: add 3 action cards instead of 2
             state->numActions = state->numActions + 3;
+            printf("NEVER");
         }
     }
 
