@@ -23,7 +23,7 @@
 
 int main()
 {
-    int xtraCoins = 2;
+    
     int choice1 = 0, choice2 = 0, handpos = 0;
     int result = 0;
 
@@ -65,7 +65,7 @@ int main()
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // set the choice
-    choice1 = 0
+    choice1 = 0;
     choice2 = 0;
 
     // set the card
