@@ -47,11 +47,13 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
                     }
                 }
                 card_not_discarded = 0; //Exit the loop
+                printf("exit the loop\n");
             }
 
             else
             {
                 p++; //Next card
+                printf("next card\n");
             }
         }
     }
@@ -60,6 +62,7 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
     { // Gain an Estate
         if (supplyCount(estate, state) > 0)
         {
+            printf("last else\n");
             gainCard(estate, state, 0, currentPlayer); //Gain an estate
             // BUG
             // state->supplyCount[estate]--; //Decrement Estates
