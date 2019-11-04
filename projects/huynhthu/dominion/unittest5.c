@@ -92,7 +92,7 @@ int main()
     handpos = 1;
 
     // set the card of choice to be invalid
-    testG.hand[thisPlayer][0] = steward;
+    testG.hand[thisPlayer][0] = copper;
     testG.hand[thisPlayer][1] = copper;
     testG.hand[thisPlayer][2] = duchy;
     testG.hand[thisPlayer][3] = ambassador;
