@@ -22,19 +22,6 @@ char *inputString()
     char c;
     for (i = 0; i < 5; i++)
     {
-        // c = (rand() % (116 - 101 + 1)) + 101;
-        // if (i == 0 && s[0] == 'r')
-        //     continue;
-        // else if (i == 1 && s[1] == 'e')
-        //     continue;
-        // else if (i == 2 && s[2] == 's')
-        //     continue;
-        // else if (i == 3 && s[3] == 'e')
-        //     continue;
-        // else if (i == 4 && s[4] == 't')
-        //     continue;
-        // else
-        //     s[i] = c;
         s[i] = (rand() % (116 - 101 + 1)) + 101;
     }
     char *str = s;
