@@ -43,8 +43,9 @@ void testme()
         printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
         for (int i = 0; i < 5; i++)
         {
-            printf("s %d = %c\n", i, s[i]);
+            printf("s %d = %c", i, s[i]);
         }
+        printf("\n");
 
         if (c == '[' && state == 0)
             state = 1;
