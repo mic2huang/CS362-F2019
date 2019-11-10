@@ -1,0 +1,15 @@
+CFLAGS= -Wall -fpic -coverage -lm -std=c99
+
+testme: testme.c
+	gcc -o testme -g testme.c $(CFLAGS)
+
+runtests: testme
+	./testme &> testresult.out
+	gcov testme.c >> testresult.out
+	cat testme.c.gcov >> testresult.out
+
+clean:
+	rm -f testme *.gcov *.gcda *.gcno *.o
+
+clean:
+	rm -f *.o testme *.gcov *.gcda *.gcno *.so *.out
