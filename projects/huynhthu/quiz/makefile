@@ -1,11 +1,11 @@
-CFLAGS= -Wall -fpic -coverage -lm -std=c99
+CFLAGS= -Wall -fpic -coverage -lm -std=c99 -i
 
 testme: testme.c
 	gcc -o testme -g testme.c $(CFLAGS)
 
 runtest: testme
 	./testme
-	gcov testme.c > testresult.out
+	gcov testme.c -b -f > testresult.out
 	cat testme.c.gcov >> testresult.out
 
 clean:
