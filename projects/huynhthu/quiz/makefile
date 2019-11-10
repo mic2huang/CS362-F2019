@@ -4,8 +4,8 @@ testme: testme.c
 	gcc -o testme -g testme.c $(CFLAGS)
 
 runtest: testme
-	./testme &> testresult.out
-	gcov testme.c >> testresult.out
+	./testme
+	gcov testme.c > testresult.out
 	cat testme.c.gcov >> testresult.out
 
 clean:
