@@ -9,7 +9,4 @@ runtests: testme
 	cat testme.c.gcov >> testresult.out
 
 clean:
-	rm -f testme *.gcov *.gcda *.gcno *.o
-
-clean:
 	rm -f *.o testme *.gcov *.gcda *.gcno *.so *.out
