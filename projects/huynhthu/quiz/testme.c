@@ -24,7 +24,7 @@ char *inputString()
         s[i] = (rand() % (116 - 101 + 1)) + 101;
         i++;
     }
-    s[5] = 0;
+    s[5] = '\0';
     char *str = s;
     return str;
 }
