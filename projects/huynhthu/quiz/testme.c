@@ -19,11 +19,23 @@ char *inputString()
 
     // Generate random character between 101 (e) and 116 (t)
     int i;
+    char c;
     for (i = 0; i < 5; i++)
     {
-        s[i] = (rand() % (116 - 101 + 1)) + 101;
+        c = (rand() % (116 - 101 + 1)) + 101;
+        if (i == 0 && s[0] == 'r')
+            continue;
+        else if (i == 1 && s[1] == 'e')
+            continue;
+        else if (i == 2 && s[2] == 's')
+            continue;
+        else if (i == 3 && s[3] == 'e')
+            continue;
+        else if (i == 4 && s[4] == 't')
+            continue;
+        else
+            s[i] = c;
     }
-    s[5] = '\0';
     char *str = s;
     return str;
 }
@@ -40,11 +52,6 @@ void testme()
         c = inputChar();
         s = inputString();
         printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
-        for (int i = 0; i < 5; i++)
-        {
-            printf("s%d = %c ", i, s[i]);
-        }
-        printf("\n");
 
         if (c == '[' && state == 0)
             state = 1;
