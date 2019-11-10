@@ -15,7 +15,7 @@ char *inputString()
 {
     // TODO: rewrite this function
     // Create the array
-    static char s[6];
+    char s[6];
 
     // Generate random character between 101 (e) and 116 (t)
     int i;
@@ -24,7 +24,9 @@ char *inputString()
         s[i] = (rand() % (116 - 101 + 1)) + 101;
         i++;
     }
-    return s;
+    s[5] = 0;
+    char *str = s;
+    return str;
 }
 
 void testme()
