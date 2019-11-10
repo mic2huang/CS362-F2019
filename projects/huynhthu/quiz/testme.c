@@ -22,7 +22,6 @@ char *inputString()
     for (i = 0; i < 5; i++)
     {
         s[i] = (rand() % (116 - 101 + 1)) + 101;
-        i++;
     }
     s[5] = '\0';
     char *str = s;
@@ -43,7 +42,7 @@ void testme()
         printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
         for (int i = 0; i < 5; i++)
         {
-            printf("s %d = %c", i, s[i]);
+            printf("s%d = %c ", i, s[i]);
         }
         printf("\n");
 
