@@ -19,7 +19,6 @@ char *inputString()
 
     // Generate random character between 101 (e) and 116 (t)
     int i;
-    char c;
     for (i = 0; i < 5; i++)
     {
         s[i] = (rand() % (116 - 101 + 1)) + 101;
