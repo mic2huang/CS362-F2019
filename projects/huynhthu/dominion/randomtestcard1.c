@@ -39,9 +39,6 @@ int main()
     // initialize a game state and player cards
     initializeGame(numPlayers, k, seed, &G);
 
-    // copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
     // set extra buys and extra coins
     xtraBuys = 1;
     xtraCoins = 4;
@@ -54,7 +51,6 @@ int main()
     int testNum = 1;
     int i;
     int estateInHand = 0;
-    int estateNum;
     while (cont)
     {
         // copy the game state to a test case
@@ -67,11 +63,11 @@ int main()
         testG.supplyCount[estate] = rand() % 2;
 
         // generate random number of estate card in hand
-        estateNum = rand() % 2;
+        estateInHand = rand() % 2;
 
-        if (estateNum > 0)
+        if (estateInHand > 0)
         {
-            testG.hand[thisPlayer][estateNum] = estate;
+            testG.hand[thisPlayer][estateInHand] = estate;
         }
 
         // call the test function
@@ -81,35 +77,32 @@ int main()
         if (choice1 == 1)
         {
             // check card in hand
-            for (i = 0; i < 5; i++)
+            if (estateInHand > 0 && state1 != 1)
             {
-                if (testG.hand[thisPlayer][0] == estate && state1 != 1)
-                {
-                    // reach state: choice = 1; Discard an Estate
-                    state1 = 1;
-                    printf("TEST %d:\n", testNum);
-                    printf("Choice = 1; NumOfBuys += 1; Coins += 4; Discard an Estate\n");
-                    printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
-                    printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
-                    testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
+                // reach state: choice = 1; Discard an Estate
+                state1 = 1;
+                printf("TEST %d:\n", testNum);
+                printf("STATE 1: Choice = 1; NumOfBuys += 1; Coins += 4; Discard an Estate\n");
+                printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
+                printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
+                testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
 
-                    printf("2. Coins = %d\n", testG.coins);
-                    printf("Expected = %d\n", G.coins + xtraCoins);
-                    testResult(testG.coins, G.coins + xtraCoins);
+                printf("2. Coins = %d\n", testG.coins);
+                printf("Expected = %d\n", G.coins + xtraCoins);
+                testResult(testG.coins, G.coins + xtraCoins);
 
-                    printf("3. Num of buys = %d\n", testG.numBuys);
-                    printf("Expected = %d\n", G.numBuys + xtraBuys);
-                    testResult(testG.numBuys, G.numBuys + xtraBuys);
-                    estateInHand = 1;
-                    break;
-                }
+                printf("3. Num of buys = %d\n", testG.numBuys);
+                printf("Expected = %d\n", G.numBuys + xtraBuys);
+                testResult(testG.numBuys, G.numBuys + xtraBuys);
+                estateInHand = 1;
+                break;
             }
-            if (estateInHand == 0 && state2 != 1)
+            else if (estateInHand == 0 && state2 != 1)
             {
                 // reach state: choice = 1; No Estate card in hand, gain an Estate anyway
                 state2 = 1;
                 printf("TEST %d:\n", testNum);
-                printf("Choice = 1; NumOfBuys += 1; No Estate card in hand, gain an Estate anyway\n");
+                printf("STATE 2: Choice = 1; NumOfBuys += 1; No Estate card in hand, gain an Estate anyway\n");
                 printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
                 printf("Expected = %d\n", G.supplyCount[estate] - discarded);
                 testResult(testG.supplyCount[estate], G.supplyCount[estate] - discarded);
@@ -126,7 +119,7 @@ int main()
                 // reach state: choice = 0; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover
                 state3 = 1;
                 printf("TEST %d:\n", testNum);
-                printf("Choice = 0; NumOfBuys += 1; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover\n");
+                printf("STATE 3: Choice = 0; NumOfBuys += 1; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover\n");
                 printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
                 printf("Expected = %d\n", 0);
                 testResult(testG.supplyCount[estate], 0);
