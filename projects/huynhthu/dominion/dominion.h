@@ -8,7 +8,7 @@
 
 #define MAX_PLAYERS 4
 
-#define DEBUG 0
+#define DEBUG 1
 
 /* http://dominion.diehrstraits.com has card texts */
 /* http://dominion.isotropic.org has other stuff */
@@ -16,7 +16,8 @@
 /* hand# means index of a card in current active player's hand */
 
 enum CARD
-{   curse = 0,
+{
+    curse = 0,
     estate,
     duchy,
     province,
@@ -30,7 +31,7 @@ enum CARD
     council_room,
     feast, /* choice1 is supply # of card gained) */
     gardens,
-    mine, /* choice1 is hand# of money to trash, choice2 is supply# of
+    mine,    /* choice1 is hand# of money to trash, choice2 is supply# of
 	    money to put in hand */
     remodel, /* choice1 is hand# of card to remodel, choice2 is supply# */
     smithy,
@@ -39,7 +40,7 @@ enum CARD
     baron, /* choice1: boolean for discard of estate */
     /* Discard is always of first (lowest index) estate */
     great_hall,
-    minion, /* choice1:  1 = +2 coin, 2 = redraw */
+    minion,  /* choice1:  1 = +2 coin, 2 = redraw */
     steward, /* choice1: 1 = +2 card, 2 = +2 coin, 3 = trash 2 (choice2,3) */
     tribute,
 
@@ -52,17 +53,18 @@ enum CARD
     treasure_map
 };
 
-struct gameState {
-    int numPlayers; //number of players
-    int supplyCount[treasure_map+1];  //this is the amount of a specific type of card given a specific number.
-    int embargoTokens[treasure_map+1];
+struct gameState
+{
+    int numPlayers;                    //number of players
+    int supplyCount[treasure_map + 1]; //this is the amount of a specific type of card given a specific number.
+    int embargoTokens[treasure_map + 1];
     int outpostPlayed;
     int outpostTurn;
     int whoseTurn;
     int phase;
     int numActions; /* Starts at 1 each turn */
-    int coins; /* Use as you see fit! */
-    int numBuys; /* Starts at 1 each turn */
+    int coins;      /* Use as you see fit! */
+    int numBuys;    /* Starts at 1 each turn */
     int hand[MAX_PLAYERS][MAX_HAND];
     int handCount[MAX_PLAYERS];
     int deck[MAX_PLAYERS][MAX_DECK];
@@ -76,9 +78,9 @@ struct gameState {
 /* All functions return -1 on failure, and DO NOT CHANGE GAME STATE;
    unless specified for other return, return 0 on success */
 
-struct gameState* newGame();
+struct gameState *newGame();
 
-int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
+int *kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
                   int k8, int k9, int k10);
 
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
