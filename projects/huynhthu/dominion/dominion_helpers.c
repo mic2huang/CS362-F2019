@@ -16,6 +16,7 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
     int card_not_discarded = 1; //Flag for discard set!
     while (card_not_discarded)
     {
+      printf("p = %d\n", p);
       if (state->hand[currentPlayer][p] == estate)
       {                    //Found an estate card!
         state->coins += 4; //Add 4 coins to the amount of coins
