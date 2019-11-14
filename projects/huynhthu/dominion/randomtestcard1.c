@@ -49,7 +49,6 @@ int main()
     int cont = 1;
     int state1 = 0, state2 = 0, state3 = 0;
     int testNum = 1;
-    int i;
     int estateInHand = 0;
     while (cont)
     {
@@ -95,7 +94,6 @@ int main()
                 printf("Expected = %d\n", G.numBuys + xtraBuys);
                 testResult(testG.numBuys, G.numBuys + xtraBuys);
                 estateInHand = 1;
-                break;
             }
             else if (estateInHand == 0 && state2 != 1)
             {
