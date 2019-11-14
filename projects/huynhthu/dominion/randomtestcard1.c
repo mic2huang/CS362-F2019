@@ -77,7 +77,7 @@ int main()
         // call the test function
         playBaron(thisPlayer, choice1, &testG);
 
-        printf("TEST %d: choice = %d, estateSupply = %d, state3 = %d\n", testNum, choice1, testG.supplyCount[estate]);
+        printf("TEST %d: choice = %d, estateSupply = %d\n", testNum, choice1, testG.supplyCount[estate]);
         // check choice
         if (choice1 == 1)
         {
