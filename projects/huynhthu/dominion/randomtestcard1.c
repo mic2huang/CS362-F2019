@@ -60,12 +60,12 @@ int main()
 
         // generate random number of supply Estate
         testG.supplyCount[estate] = rand() % 3;
-        printf("estateSupply = %d\n", testG.supplyCount[estate]);
         if (testG.supplyCount[estate] == 1)
         {
             // narrow the choice
             choice1 = 0;
         }
+        printf("estateSupply = %d, choice = %d\n", testG.supplyCount[estate], choice1);
 
         // generate random number of estate card in hand
         estateInHand = rand() % 2;
