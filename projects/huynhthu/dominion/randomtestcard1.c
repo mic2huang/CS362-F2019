@@ -60,11 +60,6 @@ int main()
 
         // generate random number of supply Estate
         testG.supplyCount[estate] = rand() % 3;
-        // if (testG.supplyCount[estate] == 1)
-        // {
-        //     // narrow the choice
-        //     choice1 = 0;
-        // }
 
         // generate random number of estate card in hand
         estateInHand = rand() % 2;
