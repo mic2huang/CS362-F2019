@@ -60,6 +60,7 @@ int main()
 
         // generate random number of supply Estate
         testG.supplyCount[estate] = rand() % 3;
+        printf("estateSupply = %d\n", testG.supplyCount[estate]);
         if (testG.supplyCount[estate] == 1)
         {
             // narrow the choice
