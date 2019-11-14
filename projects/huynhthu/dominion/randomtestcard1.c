@@ -74,7 +74,7 @@ int main()
             // check card in hand
             for (i = 0; i < 5; i++)
             {
-                if (testG.hand[thisPlayer][0] == estate)
+                if (testG.hand[thisPlayer][0] == estate && state1 != 1)
                 {
                     // reach state: choice = 1; Discard an Estate
                     state1 = 1;
@@ -94,7 +94,7 @@ int main()
                     break;
                 }
             }
-            if (estateInHand == 0)
+            if (estateInHand == 0 && state2 != 1)
             {
                 // reach state: choice = 1; No Estate card in hand, gain an Estate anyway
                 state2 = 1;
@@ -110,7 +110,7 @@ int main()
         }
         else // choice1 = 0
         {
-            if (testG.supplyCount[estate] == 1)
+            if (testG.supplyCount[estate] == 1 && state3 != 1)
             {
                 // reach state: choice = 0; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover
                 state3 = 1;
