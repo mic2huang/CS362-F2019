@@ -111,7 +111,7 @@ int main()
                 testResult(testG.numBuys, G.numBuys + xtraBuys);
             }
         }
-        esle // choice1 = 0
+        else // choice1 = 0
         {
             if (testG.supplyCount[estate] == 1 && state == 2)
             {
