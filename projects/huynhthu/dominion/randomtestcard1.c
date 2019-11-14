@@ -72,6 +72,7 @@ int main()
         // call the test function
         playBaron(thisPlayer, choice1, &testG);
 
+        printf("TEST %d: choice = %d, estateSupply = %d\n", testNum, choice1, testG.supplyCount[estate]);
         // check choice
         if (choice1 == 1)
         {
@@ -130,6 +131,7 @@ int main()
                 testResult(isGameOver(&testG), 1);
             }
         }
+
         testNum++;
         // check branch coverage
         if (state1 == 1 && state2 == 1 && state3 == 1)
