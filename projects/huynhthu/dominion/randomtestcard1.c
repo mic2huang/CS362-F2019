@@ -65,7 +65,7 @@ int main()
             // narrow the choice
             choice1 = 0;
         }
-        printf("estateSupply = %d, choice = %d, state3 = %s\n", testG.supplyCount[estate], choice1, state3);
+        printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
 
         // generate random number of estate card in hand
         estateInHand = rand() % 2;
