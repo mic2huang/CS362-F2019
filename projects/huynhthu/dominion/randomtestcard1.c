@@ -88,8 +88,8 @@ int main()
                     // reach state: choice = 1; Discard an Estate
                     state1 = 1;
                     printf("TEST %d:\n", testNum);
-                    printf("Choice = 1; NumOfBuys += 1; Coins += 4; Discard an Estate\n")
-                        printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
+                    printf("Choice = 1; NumOfBuys += 1; Coins += 4; Discard an Estate\n");
+                    printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
                     printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
                     testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
 
