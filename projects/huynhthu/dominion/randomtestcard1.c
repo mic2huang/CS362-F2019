@@ -65,7 +65,7 @@ int main()
             // narrow the choice
             choice1 = 0;
         }
-        printf("estateSupply = %d, choice = %d\n", testG.supplyCount[estate], choice1);
+        printf("estateSupply = %d, choice = %d, state3 = %s\n", testG.supplyCount[estate], choice1, state3);
 
         // generate random number of estate card in hand
         estateInHand = rand() % 2;
@@ -118,6 +118,7 @@ int main()
         }
         else // choice1 = 0
         {
+            printf("HERE\n");
             if (testG.supplyCount[estate] == 1 && state3 != 1)
             {
                 // reach state: choice = 0; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover
