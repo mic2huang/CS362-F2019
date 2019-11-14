@@ -59,7 +59,7 @@ int main()
         choice1 = rand() % 2;
 
         // generate random number of supply Estate
-        testG.supplyCount[estate] = rand() % 2;
+        testG.supplyCount[estate] = rand() % 3;
         if (testG.supplyCount[estate] == 1)
         {
             // narrow the choice
@@ -77,7 +77,7 @@ int main()
         // call the test function
         playBaron(thisPlayer, choice1, &testG);
 
-        printf("TEST %d: choice = %d, estateSupply = %d, state3 = %d\n", testNum, choice1, testG.supplyCount[estate], state3);
+        printf("TEST %d: choice = %d, estateSupply = %d, state3 = %d\n", testNum, choice1, testG.supplyCount[estate]);
         // check choice
         if (choice1 == 1)
         {
