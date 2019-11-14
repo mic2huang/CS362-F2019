@@ -60,11 +60,11 @@ int main()
 
         // generate random number of supply Estate
         testG.supplyCount[estate] = rand() % 3;
-        if (testG.supplyCount[estate] == 1)
-        {
-            // narrow the choice
-            choice1 = 0;
-        }
+        // if (testG.supplyCount[estate] == 1)
+        // {
+        //     // narrow the choice
+        //     choice1 = 0;
+        // }
 
         // generate random number of estate card in hand
         estateInHand = rand() % 2;
@@ -77,7 +77,6 @@ int main()
         // call the test function
         playBaron(thisPlayer, choice1, &testG);
 
-        printf("TEST %d: choice = %d, estateSupply = %d\n", testNum, choice1, testG.supplyCount[estate]);
         // check choice
         if (choice1 == 1)
         {
