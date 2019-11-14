@@ -41,6 +41,7 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
           gainCard(estate, state, 0, currentPlayer);
 
           state->supplyCount[estate]--; //Decrement estates
+          printf("estate supply = %d\n", state->supplyCount[estate]);
           if (supplyCount(estate, state) == 0)
           {
             isGameOver(state);
