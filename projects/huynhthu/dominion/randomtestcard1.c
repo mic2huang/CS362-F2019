@@ -127,7 +127,7 @@ int main()
                 playBaron(thisPlayer, choice1, &testG);
 
                 printf("TEST %d:\n", testNum);
-                printf("STATE 3: Choice = 0; NumOfBuys += 1; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover\n");
+                printf("STATE 3: Choice = 0; NumOfBuys += 1; Gain an Estate, no Estate in Supply after player gaining Estate card\n");
                 printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
                 printf("Expected = %d\n", 0);
                 testResult(testG.supplyCount[estate], 0);
@@ -135,9 +135,6 @@ int main()
                 printf("2. Num of buys = %d\n", testG.numBuys);
                 printf("Expected = %d\n", G.numBuys + xtraBuys);
                 testResult(testG.numBuys, G.numBuys + xtraBuys);
-
-                printf("3. isGameOver = %d\n", isGameOver(&testG));
-                testResult(isGameOver(&testG), 1);
             }
         }
 
