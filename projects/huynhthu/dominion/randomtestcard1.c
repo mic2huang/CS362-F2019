@@ -72,6 +72,15 @@ int main()
         {
             testG.hand[thisPlayer][estateInHand] = estate;
         }
+        else
+        {
+            // remove estate card in current player's hand
+            testG.hand[thisPlayer][0] = ambassador;
+            testG.hand[thisPlayer][1] = copper;
+            testG.hand[thisPlayer][2] = duchy;
+            testG.hand[thisPlayer][3] = ambassador;
+            testG.hand[thisPlayer][4] = feast;
+        }
 
         // check choice
         if (choice1 == 1)
