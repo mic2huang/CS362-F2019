@@ -64,7 +64,7 @@ int main()
         //printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
 
         // generate random number of estate card in hand
-        estateInHand = rand() % 2;
+        estateInHand = rand() % 5;
 
         if (estateInHand > 0)
         {
