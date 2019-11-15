@@ -59,13 +59,9 @@ int main()
         choice1 = rand() % 2;
 
         // generate random number of supply Estate
-        testG.supplyCount[estate] = rand() % 3;
-        if (testG.supplyCount[estate] == 1)
-        {
-            // narrow the choice
-            choice1 = 0;
-        }
-        printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
+        testG.supplyCount[estate] = rand() % 2;
+
+        //printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
 
         // generate random number of estate card in hand
         estateInHand = rand() % 2;
@@ -75,9 +71,6 @@ int main()
             testG.hand[thisPlayer][estateInHand] = estate;
         }
 
-        // call the test function
-        playBaron(thisPlayer, choice1, &testG);
-
         // check choice
         if (choice1 == 1)
         {
@@ -86,6 +79,9 @@ int main()
             {
                 // reach state: choice = 1; Discard an Estate
                 state1 = 1;
+                // call the test function
+                playBaron(thisPlayer, choice1, &testG);
+
                 printf("TEST %d:\n", testNum);
                 printf("STATE 1: Choice = 1; NumOfBuys += 1; Coins += 4; Discard an Estate\n");
                 printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
@@ -105,6 +101,9 @@ int main()
             {
                 // reach state: choice = 1; No Estate card in hand, gain an Estate anyway
                 state2 = 1;
+                // call the test function
+                playBaron(thisPlayer, choice1, &testG);
+
                 printf("TEST %d:\n", testNum);
                 printf("STATE 2: Choice = 1; NumOfBuys += 1; No Estate card in hand, gain an Estate anyway\n");
                 printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
@@ -118,11 +117,13 @@ int main()
         }
         else // choice1 = 0
         {
-            printf("HERE\n");
             if (testG.supplyCount[estate] == 1 && state3 != 1)
             {
                 // reach state: choice = 0; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover
                 state3 = 1;
+                // call the test function
+                playBaron(thisPlayer, choice1, &testG);
+
                 printf("TEST %d:\n", testNum);
                 printf("STATE 3: Choice = 0; NumOfBuys += 1; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover\n");
                 printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
