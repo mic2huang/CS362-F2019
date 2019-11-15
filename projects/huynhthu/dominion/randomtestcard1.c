@@ -99,7 +99,7 @@ int main()
                 testResult(testG.numBuys, G.numBuys + xtraBuys);
                 estateInHand = 1;
             }
-            else if (estateInHand == 0 && state2 != 1)
+            else if (estateInHand == 0 && testG.supplyCount[estate] == 1 && state2 != 1)
             {
                 // reach state: choice = 1; No Estate card in hand, gain an Estate anyway
                 state2 = 1;
