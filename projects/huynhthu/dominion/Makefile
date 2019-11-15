@@ -46,6 +46,7 @@ randomtestcard1: randomtestcard1.c dominion.o rngs.o
 # 	gcc -o unittest5 -g  unittest5.c dominion.o rngs.o dominion_helpers.o $(CFLAGS)
 
 runrandomtests: randomtestcard1
+	./randomtestcard1
 	gcov -b -f dominion_helpers.c > randomtestresult.out
 	cat dominion_helpers.c.gcov >> randomtestresult.out
 
