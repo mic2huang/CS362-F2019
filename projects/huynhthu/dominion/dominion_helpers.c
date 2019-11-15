@@ -62,7 +62,7 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
     {
       gainCard(estate, state, 0, currentPlayer); //Gain an estate
       // BUG (REMOVED)
-      state->supplyCount[estate]--; //Decrement Estates
+      //state->supplyCount[estate]--; //Decrement Estates
       if (supplyCount(estate, state) == 0)
       {
         isGameOver(state);

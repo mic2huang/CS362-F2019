@@ -50,6 +50,7 @@ int main()
     int state1 = 0, state2 = 0, state3 = 0;
     int testNum = 1;
     int estateInHand = 0;
+    int estateSupplyBefore;
     while (cont)
     {
         // copy the game state to a test case
@@ -60,6 +61,7 @@ int main()
 
         // generate random number of supply Estate
         testG.supplyCount[estate] = rand() % 2;
+        estateSupplyBefore = testG.supplyCount[estate];
 
         //printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
 
@@ -107,8 +109,8 @@ int main()
                 printf("TEST %d:\n", testNum);
                 printf("STATE 2: Choice = 1; NumOfBuys += 1; No Estate card in hand, gain an Estate anyway\n");
                 printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
-                printf("Expected = %d\n", G.supplyCount[estate] - discarded);
-                testResult(testG.supplyCount[estate], G.supplyCount[estate] - discarded);
+                printf("Expected = %d\n", estateSupplyBefore - discarded);
+                testResult(testG.supplyCount[estate], estateSupplyBefore - discarded);
 
                 printf("2. Num of buys = %d\n", testG.numBuys);
                 printf("Expected = %d\n", G.numBuys + xtraBuys);
