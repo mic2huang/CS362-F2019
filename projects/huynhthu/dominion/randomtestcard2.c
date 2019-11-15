@@ -18,6 +18,7 @@
 #include <assert.h>
 #include "rngs.h"
 #include <stdlib.h>
+#include <time.h>
 
 #define TESTFUNC "playMinion()"
 
@@ -105,7 +106,7 @@ int main()
         }
         testNum++;
         // check branch coverage
-        if (state1 == 1 && state2 == 1 && state3 == 1)
+        if (state1 == 1 && state2 == 1)
         {
             // test DONE
             cont = 0;
