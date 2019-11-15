@@ -109,8 +109,8 @@ int main()
                 printf("TEST %d:\n", testNum);
                 printf("STATE 2: Choice = 1; NumOfBuys += 1; No Estate card in hand, gain an Estate anyway\n");
                 printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
-                printf("Expected = %d\n", estateSupplyBefore - discarded);
-                testResult(testG.supplyCount[estate], estateSupplyBefore - discarded);
+                printf("Expected = %d\n", estateSupplyBefore - 1);
+                testResult(testG.supplyCount[estate], estateSupplyBefore - 1);
 
                 printf("2. Num of buys = %d\n", testG.numBuys);
                 printf("Expected = %d\n", G.numBuys + xtraBuys);
