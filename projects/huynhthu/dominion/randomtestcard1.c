@@ -65,21 +65,14 @@ int main()
 
         //printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
 
-        // generate random number of estate card in hand
-        estateInHand = rand() % 5;
-
-        if (estateInHand > 0)
+        // get number of estate card in hand
+        for (int i = 0; i < 5; i++)
         {
-            testG.hand[thisPlayer][estateInHand] = estate;
-        }
-        else
-        {
-            // remove estate card in current player's hand
-            testG.hand[thisPlayer][0] = ambassador;
-            testG.hand[thisPlayer][1] = copper;
-            testG.hand[thisPlayer][2] = duchy;
-            testG.hand[thisPlayer][3] = ambassador;
-            testG.hand[thisPlayer][4] = feast;
+            if (testG.hand[thisPlayer][i] == estate)
+            {
+                estateInHand++;
+                break;
+            }
         }
 
         // check choice
