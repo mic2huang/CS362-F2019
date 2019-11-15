@@ -60,7 +60,7 @@ int main()
         choice1 = rand() % 2;
 
         // generate random number of supply Estate
-        testG.supplyCount[estate] = rand() % 2 + 1;
+        testG.supplyCount[estate] = rand() % 8 + 1;
         estateSupplyBefore = testG.supplyCount[estate];
 
         //printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
