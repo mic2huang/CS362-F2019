@@ -25,8 +25,8 @@
 int main()
 {
     int discarded = 1;
-    int xtraCoins = 0;
-    int xtraBuys = 0;
+    int xtraCoins = 4;
+    int xtraBuys = 1;
 
     int choice1 = 0;
     int seed = 1000;
@@ -38,10 +38,6 @@ int main()
 
     // initialize a game state and player cards
     initializeGame(numPlayers, k, seed, &G);
-
-    // set extra buys and extra coins
-    xtraBuys = 1;
-    xtraCoins = 4;
 
     srand(time(NULL));
 
@@ -65,14 +61,21 @@ int main()
 
         //printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
 
-        // get number of estate card in hand
-        for (int i = 0; i < 5; i++)
+        // generate random number of estate card in hand
+        estateInHand = rand() % 5;
+
+        if (estateInHand > 0)
         {
-            if (testG.hand[thisPlayer][i] == estate)
-            {
-                estateInHand++;
-                break;
-            }
+            testG.hand[thisPlayer][estateInHand] = estate;
+        }
+        else
+        {
+            // remove estate card in current player's hand
+            testG.hand[thisPlayer][0] = ambassador;
+            testG.hand[thisPlayer][1] = copper;
+            testG.hand[thisPlayer][2] = duchy;
+            testG.hand[thisPlayer][3] = ambassador;
+            testG.hand[thisPlayer][4] = feast;
         }
 
         // check choice
@@ -99,7 +102,6 @@ int main()
                 printf("3. Num of buys = %d\n", testG.numBuys);
                 printf("Expected = %d\n", G.numBuys + xtraBuys);
                 testResult(testG.numBuys, G.numBuys + xtraBuys);
-                estateInHand = 1;
             }
             else if (estateInHand == 0 && testG.supplyCount[estate] == 1 && state2 != 1)
             {
