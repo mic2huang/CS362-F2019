@@ -113,7 +113,7 @@ int main()
     int iterations = 10000;
     for (i = 0; i < iterations; i++)
     {
-        testPlayBaron(thisPlayer, choice1, &testG);
+        testPlayBaron(thisPlayer, choice1, &testG, &G);
     }
     printf("# Passed Tests: %i\n", passed);
     printf("# Failed Tests: %i\n", iterations - passed);
