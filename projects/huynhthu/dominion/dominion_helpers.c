@@ -83,8 +83,8 @@ int playMinion(int currentPlayer, int choice1, int choice2, struct gameState *st
 
     if (choice1)
     {
-        // BUG: +4 coins instead of 2
-        state->coins = state->coins + 4;
+        // BUG: +4 coins instead of 2 (REMOVED in assignment 4)
+        state->coins = state->coins + 2;
     }
     else if (choice2) //discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
     {
@@ -95,8 +95,8 @@ int playMinion(int currentPlayer, int choice1, int choice2, struct gameState *st
         }
 
         //draw 4
-        // BUG: draw 2 cards instead of 4
-        drawNCards(currentPlayer, 2, state);
+        // BUG: draw 2 cards instead of 4 (REMOVED in assignment 4)
+        drawNCards(currentPlayer, 4, state);
 
         //other players discard hand and redraw if hand size > 4
         for (int i = 0; i < state->numPlayers; i++)
