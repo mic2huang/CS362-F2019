@@ -22,7 +22,7 @@
 
 #define TESTFUNC "playBaron()"
 
-int passed = 0;
+int passed = 0, handCountFailed = 0, coinsFailed = 0, numBuysFailed = 0, supplyCountFailed = 0;
 int discarded = 1;
 int xtraCoins = 4;
 int xtraBuys = 1;
@@ -34,22 +34,51 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG, struct 
 {
     // call the test function
     playBaron(thisPlayer, choice1, testG);
-
+    int thisTestResult = 1;
     // check choice
     if (choice1 == 1)
     {
         // check card in hand
         if (estateInHand > 0)
         {
-            if ((testG->handCount[thisPlayer] == G->handCount[thisPlayer] - discarded) && (testG->coins == G->coins + xtraCoins) && (testG->numBuys == G->numBuys + xtraBuys))
+            if (testG->handCount[thisPlayer] != G->handCount[thisPlayer] - discarded)
+            {
+                handCountFailed++;
+                thisTestResult = 0;
+            }
+
+            if (testG->coins != G->coins + xtraCoins)
+            {
+                coinsFailed++;
+                thisTestResult = 0;
+            }
+
+            if (testG->numBuys != G->numBuys + xtraBuys)
+            {
+                numBuysFailed++;
+                thisTestResult = 0;
+            }
+
+            if (thisTestResult)
             {
                 passed++;
             }
         }
         else
         {
+            if (testG->supplyCount[estate] != estateSupplyBefore - 1)
+            {
+                supplyCountFailed++;
+                thisTestResult = 0;
+            }
 
-            if ((testG->supplyCount[estate] == estateSupplyBefore - 1) && (testG->numBuys == G->numBuys + xtraBuys))
+            if (testG->numBuys != G->numBuys + xtraBuys)
+            {
+                numBuysFailed++;
+                thisTestResult = 0;
+            }
+
+            if (thisTestResult)
             {
                 passed++;
             }
@@ -57,8 +86,19 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG, struct 
     }
     else // choice1 = 0
     {
+        if (testG->supplyCount[estate] != estateSupplyBefore - 1)
+        {
+            supplyCountFailed++;
+            thisTestResult = 0;
+        }
 
-        if ((testG->supplyCount[estate] == 0) && (testG->numBuys == G->numBuys + xtraBuys))
+        if (testG->numBuys != G->numBuys + xtraBuys)
+        {
+            numBuysFailed++;
+            thisTestResult = 0;
+        }
+
+        if (thisTestResult)
         {
             passed++;
         }
@@ -83,7 +123,6 @@ int main()
 
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
-    
     int iterations = 10000;
     for (i = 0; i < iterations; i++)
     {
@@ -117,6 +156,10 @@ int main()
     }
     printf("# Passed Tests: %i\n", passed);
     printf("# Failed Tests: %i\n", iterations - passed);
+    printf("# handCountFailed: %i\n", handCountFailed);
+    printf("# coinsFailed: %i\n", coinsFailed);
+    printf("# numBuysFailed: %i\n", numBuysFailed);
+    printf("# supplyCountFailed: %i\n", supplyCountFailed);
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
     return 0;
