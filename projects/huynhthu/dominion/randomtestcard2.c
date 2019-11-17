@@ -27,7 +27,7 @@ int discarded = 1;
 int xtraCoins = 2;
 int xtraActions = 1;
 
-void testPlayMinion(int thisPlayer, int choice1, int choice2, struct gameState *testG, struct gameState *G, int handPos)
+void testPlayMinion(int thisPlayer, int choice1, int choice2, struct gameState *testG, struct gameState *G, int handpos)
 {
     // call the test function
     playMinion(thisPlayer, choice1, choice2, testG, handpos);
@@ -94,6 +94,7 @@ int main()
     int numPlayers = 2;
     int thisPlayer = 0;
     struct gameState G, testG;
+    int i;
     int k[10] = {baron, ambassador, adventurer, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute};
 
