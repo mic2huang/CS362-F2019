@@ -22,7 +22,7 @@
 
 #define TESTFUNC "playBaron()"
 
-int passed = 0, handCountFailed = 0, coinsFailed = 0, numBuysFailed = 0, supplyCountFailed = 0;
+int passed = 0, failed = 0, handCountFailed = 0, coinsFailed = 0, numBuysFailed = 0, supplyCountFailed = 0;
 int discarded = 1;
 int xtraCoins = 4;
 int xtraBuys = 1;
@@ -63,6 +63,10 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG, struct 
             {
                 passed++;
             }
+            else
+            {
+                failed++;
+            }
         }
         else
         {
@@ -81,6 +85,10 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG, struct 
             if (thisTestResult)
             {
                 passed++;
+            }
+            else
+            {
+                failed++;
             }
         }
     }
@@ -101,6 +109,10 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG, struct 
         if (thisTestResult)
         {
             passed++;
+        }
+        else
+        {
+            failed++;
         }
     }
 }
@@ -154,12 +166,13 @@ int main()
         }
         testPlayBaron(thisPlayer, choice1, &testG, &G);
     }
-    printf("# Passed Tests: %i\n", passed);
-    printf("# Failed Tests: %i\n", iterations - passed);
-    printf("# handCountFailed: %i\n", handCountFailed);
-    printf("# coinsFailed: %i\n", coinsFailed);
-    printf("# numBuysFailed: %i\n", numBuysFailed);
-    printf("# supplyCountFailed: %i\n", supplyCountFailed);
+    printf("# total Tests: %d\n", passed + failed);
+    printf("# Passed Tests: %d\n", passed);
+    printf("# Failed Tests: %d\n", failed);
+    printf("# handCountFailed: %d\n", handCountFailed);
+    printf("# coinsFailed: %d\n", coinsFailed);
+    printf("# numBuysFailed: %d\n", numBuysFailed);
+    printf("# supplyCountFailed: %d\n", supplyCountFailed);
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
     return 0;

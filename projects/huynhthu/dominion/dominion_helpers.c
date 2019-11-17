@@ -242,8 +242,8 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
     {
         if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold)
         { //Treasure cards
-            // BUG: add 4 coins instead of 2
-            state->coins += 4;
+            // BUG: add 4 coins instead of 2 (REMOVED in assignment 4)
+            state->coins += 2;
         }
 
         else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall)
@@ -253,8 +253,8 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         }
         else
         { //Action Card
-            //BUG: add 3 action cards instead of 2
-            state->numActions = state->numActions + 3;
+            //BUG: add 3 action cards instead of 2 (REMOVED in assignment 4)
+            state->numActions = state->numActions + 2;
         }
     }
 
