@@ -23,6 +23,7 @@
 #define TESTFUNC "playMinion()"
 
 int passed = 0, handCountFailed = 0, coinsFailed = 0, numActionsFailed = 0, otherHandCountFailed = 0;
+int invalidChoice = 0;
 int discarded = 1;
 int xtraCoins = 2;
 int xtraActions = 1;
@@ -84,6 +85,10 @@ void testPlayMinion(int thisPlayer, int choice1, int choice2, struct gameState *
             passed++;
         }
     }
+    else
+    {
+        invalidChoice++;
+    }
 }
 
 int main()
@@ -125,6 +130,7 @@ int main()
     printf("# coinsFailed: %i\n", coinsFailed);
     printf("# numActionsFailed: %i\n", numActionsFailed);
     printf("# otherHandCountFailed: %i\n", otherHandCountFailed);
+    printf("# invalidChoieFailed: %i\n", invalidChoice);
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
     return 0;
