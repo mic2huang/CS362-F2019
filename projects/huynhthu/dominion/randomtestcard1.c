@@ -22,135 +22,102 @@
 
 #define TESTFUNC "playBaron()"
 
+int passed = 0;
+int discarded = 1;
+int xtraCoins = 4;
+int xtraBuys = 1;
+
+int estateInHand = 0;
+int estateSupplyBefore;
+
+void testPlayBaron(int thisPlayer, int choice1, gameState *testG)
+{
+    // call the test function
+    playBaron(thisPlayer, choice1, testG);
+
+    // check choice
+    if (choice1 == 1)
+    {
+        // check card in hand
+        if (estateInHand > 0)
+        {
+            if ((testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded) && (testG.coins, G.coins + xtraCoins) && (testG.numBuys, G.numBuys + xtraBuys))
+            {
+                passed++;
+            }
+        }
+        else
+        {
+
+            if ((testG.supplyCount[estate], estateSupplyBefore - 1) && (testG.numBuys, G.numBuys + xtraBuys))
+            {
+                passed++;
+            }
+        }
+    }
+    else // choice1 = 0
+    {
+
+        if ((testG.supplyCount[estate], 0) && (testG.numBuys, G.numBuys + xtraBuys))
+        {
+            passed++;
+        }
+    }
+}
+
 int main()
 {
-    int discarded = 1;
-    int xtraCoins = 4;
-    int xtraBuys = 1;
-
+    struct gameState G, testG;
     int choice1 = 0;
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
-    struct gameState G, testG;
+    int i;
+
     int k[10] = {baron, ambassador, estate, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute};
-
     // initialize a game state and player cards
     initializeGame(numPlayers, k, seed, &G);
 
     srand(time(NULL));
 
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
-    int cont = 1;
-    int state1 = 0, state2 = 0, state3 = 0;
-    int testNum = 1;
-    int estateInHand = 0;
-    int estateSupplyBefore;
-    while (cont)
+
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+
+    // generate random choice
+    choice1 = rand() % 2;
+
+    // generate random number of supply Estate
+    testG.supplyCount[estate] = rand() % 8 + 1;
+    estateSupplyBefore = testG.supplyCount[estate];
+
+    // generate random number of estate card in hand
+    estateInHand = rand() % 5;
+
+    if (estateInHand > 0)
     {
-        // copy the game state to a test case
-        memcpy(&testG, &G, sizeof(struct gameState));
-
-        // generate random choice
-        choice1 = rand() % 2;
-
-        // generate random number of supply Estate
-        testG.supplyCount[estate] = rand() % 8 + 1;
-        estateSupplyBefore = testG.supplyCount[estate];
-
-        //printf("estateSupply = %d, choice = %d, state3 = %d\n", testG.supplyCount[estate], choice1, state3);
-
-        // generate random number of estate card in hand
-        estateInHand = rand() % 5;
-
-        if (estateInHand > 0)
-        {
-            testG.hand[thisPlayer][estateInHand] = estate;
-        }
-        else
-        {
-            // remove estate card in current player's hand
-            testG.hand[thisPlayer][0] = ambassador;
-            testG.hand[thisPlayer][1] = copper;
-            testG.hand[thisPlayer][2] = duchy;
-            testG.hand[thisPlayer][3] = ambassador;
-            testG.hand[thisPlayer][4] = feast;
-        }
-
-        // check choice
-        if (choice1 == 1)
-        {
-            // check card in hand
-            if (estateInHand > 0 && state1 != 1)
-            {
-                // reach state: choice = 1; Discard an Estate
-                state1 = 1;
-                // call the test function
-                playBaron(thisPlayer, choice1, &testG);
-
-                printf("TEST %d:\n", testNum);
-                printf("STATE 1: Choice = 1; NumOfBuys += 1; Coins += 4; Discard an Estate\n");
-                printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
-                printf("Expected = %d\n", G.handCount[thisPlayer] - discarded);
-                testResult(testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
-
-                printf("2. Coins = %d\n", testG.coins);
-                printf("Expected = %d\n", G.coins + xtraCoins);
-                testResult(testG.coins, G.coins + xtraCoins);
-
-                printf("3. Num of buys = %d\n", testG.numBuys);
-                printf("Expected = %d\n", G.numBuys + xtraBuys);
-                testResult(testG.numBuys, G.numBuys + xtraBuys);
-            }
-            else if (estateInHand == 0 && testG.supplyCount[estate] == 1 && state2 != 1)
-            {
-                // reach state: choice = 1; No Estate card in hand, gain an Estate anyway
-                state2 = 1;
-                // call the test function
-                playBaron(thisPlayer, choice1, &testG);
-
-                printf("TEST %d:\n", testNum);
-                printf("STATE 2: Choice = 1; NumOfBuys += 1; No Estate card in hand, gain an Estate anyway\n");
-                printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
-                printf("Expected = %d\n", estateSupplyBefore - 1);
-                testResult(testG.supplyCount[estate], estateSupplyBefore - 1);
-
-                printf("2. Num of buys = %d\n", testG.numBuys);
-                printf("Expected = %d\n", G.numBuys + xtraBuys);
-                testResult(testG.numBuys, G.numBuys + xtraBuys);
-            }
-        }
-        else // choice1 = 0
-        {
-            if (testG.supplyCount[estate] == 1 && state3 != 1)
-            {
-                // reach state: choice = 0; Gain an Estate, no Estate in Supply after player gaining Estate card, gameover
-                state3 = 1;
-                // call the test function
-                playBaron(thisPlayer, choice1, &testG);
-
-                printf("TEST %d:\n", testNum);
-                printf("STATE 3: Choice = 0; NumOfBuys += 1; Gain an Estate, no Estate in Supply after player gaining Estate card\n");
-                printf("1. Supply Estate = %d\n", testG.supplyCount[estate]);
-                printf("Expected = %d\n", 0);
-                testResult(testG.supplyCount[estate], 0);
-
-                printf("2. Num of buys = %d\n", testG.numBuys);
-                printf("Expected = %d\n", G.numBuys + xtraBuys);
-                testResult(testG.numBuys, G.numBuys + xtraBuys);
-            }
-        }
-
-        testNum++;
-        // check branch coverage
-        if (state1 == 1 && state2 == 1 && state3 == 1)
-        {
-            // test DONE
-            cont = 0;
-            printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
-        }
+        testG.hand[thisPlayer][estateInHand] = estate;
     }
+    else
+    {
+        // remove estate card in current player's hand
+        testG.hand[thisPlayer][0] = ambassador;
+        testG.hand[thisPlayer][1] = copper;
+        testG.hand[thisPlayer][2] = duchy;
+        testG.hand[thisPlayer][3] = ambassador;
+        testG.hand[thisPlayer][4] = feast;
+    }
+
+    int iterations = 10000;
+    for (i = 0; i < iterations; i++)
+    {
+        testPlayBaron(thisPlayer, choice1, &testG);
+    }
+    printf("# Passed Tests: %i\n", passed);
+    printf("# Failed Tests: %i\n", iterations - passed);
+    printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
     return 0;
 }
