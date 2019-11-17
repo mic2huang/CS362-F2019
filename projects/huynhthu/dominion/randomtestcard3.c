@@ -59,7 +59,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         {
             for (i = 0; i < 2; i++)
             {
-                tributeRevealedCards[i] = state->discard[nextPlayer][i];
+                tributeRevealedCards[i] = testG->discard[nextPlayer][i];
             }
         }
     }
