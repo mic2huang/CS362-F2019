@@ -22,7 +22,7 @@
 
 #define TESTFUNC "playTribute()"
 
-int passed = 0, failed = 0, handCountFailed = 0, discardCountFailed = 0, deckCountFailed, coinsFailed, actionsFailed;
+int passed = 0, failed = 0, handCountFailed = 0, discardCountFailed = 0, deckCountFailed = 0, coinsFailed = 0, actionsFailed = 0;
 int xtraCoins = 2;
 int xtraCards = 2;
 int xtraActions = 2;
@@ -139,6 +139,7 @@ int main()
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
+    int nextPlayer = thisPlayer + 1;
     struct gameState G, testG;
     int k[10] = {baron, ambassador, adventurer, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute};
@@ -163,14 +164,16 @@ int main()
         //generate random revealed card of next player
         testG.deck[nextPlayer][testG.deckCount[nextPlayer] - 1] = rand() % 27;
 
-        testPlayTribute(thisPlayer, thisPlayer + 1, &testG, &G);
+        testPlayTribute(thisPlayer, nextPlayer, &testG, &G);
     }
     printf("# total Tests: %d\n", passed + failed);
     printf("# Passed Tests: %d\n", passed);
     printf("# Failed Tests: %d\n", failed);
     printf("# handCountFailed: %i\n", handCountFailed);
-    printf("# discardCountFailed: %i\n", coinsFailed);
-    printf("# deckCountFailed: %i\n", numActionsFailed);
+    printf("# discardCountFailed: %i\n", discardCountFailed);
+    printf("# deckCountFailed: %i\n", deckCountFailed);
+    printf("# coinsFailed: %i\n", coinsFailed);
+    printf("# numOfActionsFailed: %i\n", actionsFailed);
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
 
     return 0;
