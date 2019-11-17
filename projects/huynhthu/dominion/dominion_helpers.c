@@ -6,13 +6,13 @@
 
 int playBaron(int currentPlayer, int choice, struct gameState *state)
 {
-    // BUG: not increase buys
-    //state->numBuys++;//Increase buys by 1!
+    // BUG: not increase buys (REMOVED in assignment 4)
+    state->numBuys++; //Increase buys by 1!
     if (choice > 0)
     {              //Boolean true or going to discard an estate
         int p = 0; //Iterator for hand!
 
-        // BUG: never enter the loop
+        // BUG: never enter the loop (REMOVED in assignment 3)
         int card_not_discarded = 1; //Flag for discard set!
         while (card_not_discarded)
         {
@@ -39,7 +39,7 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
                 if (supplyCount(estate, state) > 0)
                 {
                     gainCard(estate, state, 0, currentPlayer);
-                    // BUG (REMOVED)
+                    // BUG (REMOVED in Assignment 4)
                     //state->supplyCount[estate]--; //Decrement Estates
                     if (supplyCount(estate, state) == 0)
                     {
@@ -61,7 +61,7 @@ int playBaron(int currentPlayer, int choice, struct gameState *state)
         if (supplyCount(estate, state) > 0)
         {
             gainCard(estate, state, 0, currentPlayer); //Gain an estate
-            // BUG (REMOVED)
+            // BUG (REMOVED in assignment 4)
             //state->supplyCount[estate]--; //Decrement Estates
             if (supplyCount(estate, state) == 0)
             {
