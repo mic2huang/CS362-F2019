@@ -30,7 +30,7 @@ int xtraBuys = 1;
 int estateInHand = 0;
 int estateSupplyBefore;
 
-void testPlayBaron(int thisPlayer, int choice1, gameState *testG)
+void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG)
 {
     // call the test function
     playBaron(thisPlayer, choice1, testG);
