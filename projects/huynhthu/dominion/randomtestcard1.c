@@ -83,36 +83,36 @@ int main()
 
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
-    // copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
-    // generate random choice
-    choice1 = rand() % 2;
-
-    // generate random number of supply Estate
-    testG.supplyCount[estate] = rand() % 8 + 1;
-    estateSupplyBefore = testG.supplyCount[estate];
-
-    // generate random number of estate card in hand
-    estateInHand = rand() % 5;
-
-    if (estateInHand > 0)
-    {
-        testG.hand[thisPlayer][estateInHand] = estate;
-    }
-    else
-    {
-        // remove estate card in current player's hand
-        testG.hand[thisPlayer][0] = ambassador;
-        testG.hand[thisPlayer][1] = copper;
-        testG.hand[thisPlayer][2] = duchy;
-        testG.hand[thisPlayer][3] = ambassador;
-        testG.hand[thisPlayer][4] = feast;
-    }
-
+    
     int iterations = 10000;
     for (i = 0; i < iterations; i++)
     {
+        // copy the game state to a test case
+        memcpy(&testG, &G, sizeof(struct gameState));
+
+        // generate random choice
+        choice1 = rand() % 2;
+
+        // generate random number of supply Estate
+        testG.supplyCount[estate] = rand() % 8 + 1;
+        estateSupplyBefore = testG.supplyCount[estate];
+
+        // generate random number of estate card in hand
+        estateInHand = rand() % 5;
+
+        if (estateInHand > 0)
+        {
+            testG.hand[thisPlayer][estateInHand] = estate;
+        }
+        else
+        {
+            // remove estate card in current player's hand
+            testG.hand[thisPlayer][0] = ambassador;
+            testG.hand[thisPlayer][1] = copper;
+            testG.hand[thisPlayer][2] = duchy;
+            testG.hand[thisPlayer][3] = ambassador;
+            testG.hand[thisPlayer][4] = feast;
+        }
         testPlayBaron(thisPlayer, choice1, &testG, &G);
     }
     printf("# Passed Tests: %i\n", passed);
