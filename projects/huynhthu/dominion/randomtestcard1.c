@@ -30,7 +30,7 @@ int xtraBuys = 1;
 int estateInHand = 0;
 int estateSupplyBefore;
 
-void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG)
+void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG, struct gameState *G)
 {
     // call the test function
     playBaron(thisPlayer, choice1, testG);
@@ -41,7 +41,7 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG)
         // check card in hand
         if (estateInHand > 0)
         {
-            if ((testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded) && (testG.coins, G.coins + xtraCoins) && (testG.numBuys, G.numBuys + xtraBuys))
+            if ((testG->handCount[thisPlayer], G->handCount[thisPlayer] - discarded) && (testG->coins, G->coins + xtraCoins) && (testG->numBuys, G->numBuys + xtraBuys))
             {
                 passed++;
             }
@@ -49,7 +49,7 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG)
         else
         {
 
-            if ((testG.supplyCount[estate], estateSupplyBefore - 1) && (testG.numBuys, G.numBuys + xtraBuys))
+            if ((testG->supplyCount[estate], estateSupplyBefore - 1) && (testG->numBuys, G->numBuys + xtraBuys))
             {
                 passed++;
             }
@@ -58,7 +58,7 @@ void testPlayBaron(int thisPlayer, int choice1, struct gameState *testG)
     else // choice1 = 0
     {
 
-        if ((testG.supplyCount[estate], 0) && (testG.numBuys, G.numBuys + xtraBuys))
+        if ((testG->supplyCount[estate], 0) && (testG->numBuys, G->numBuys + xtraBuys))
         {
             passed++;
         }
