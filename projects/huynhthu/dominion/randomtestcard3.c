@@ -31,7 +31,6 @@ int tributeRevealedCards[2] = {-1, -1};
 
 void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, struct gameState *G)
 {
-    int loop = 0;
     int handCountExpected = G->handCount[thisPlayer];
     int discardCardCountExpected = discardCountBefore;
     int deckCountExpected = deckCountBefore;
@@ -168,13 +167,14 @@ int main()
 
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
-    int iterations = 10000;
+    int iterations = 20000;
     for (int i = 0; i < iterations; i++)
     {
         // copy the game state to a test case
         memcpy(&testG, &G, sizeof(struct gameState));
         // generate random number of discardCount and deckCount of next player
         testG.discardCount[nextPlayer] = rand() % 10;
+        discardCountBefore = testG.discardCount[nextPlayer];
         testG.deckCount[nextPlayer] = rand() % 10 + 1;
         deckCountBefore = testG.deckCount[nextPlayer];
 
