@@ -31,11 +31,17 @@ int tributeRevealedCards[2] = {-1, -1};
 
 void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, struct gameState *G)
 {
+    printf("BEGIN\n");
     int handCountExpected = G->handCount[thisPlayer];
+    printf("handCountExpected = %d\n", handCountExpected);
     int discardCardCountExpected = discardCountBefore;
+    printf("discardCardCountExpected = %d\n", discardCardCountExpected);
     int deckCountExpected = deckCountBefore;
+    printf("deckCountExpected = %d\n", deckCountExpected);
     int coinsExpected = G->coins;
+    printf("coinsExpected = %d\n", coinsExpected);
     int actionsExpected = G->numActions;
+    printf("actionsExpected = %d\n\n", actionsExpected);
 
     int thisTestResult = 1;
     // check deckCount and discardCount to get revealed cards
@@ -140,7 +146,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         actionsFailed++;
         thisTestResult = 0;
         printf("testG->numActions = %d\n", testG->numActions);
-        printf("actionsExpected = %d\n", actionsExpected);
+        printf("actionsExpected = %d\n\n", actionsExpected);
     }
 
     if (thisTestResult)
