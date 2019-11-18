@@ -77,6 +77,12 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     // call the test function
     playTribute(thisPlayer, nextPlayer, testG);
 
+    // remove duplicated card
+    if (tributeRevealedCards[0] == tributeRevealedCards[1])
+    {
+        tributeRevealedCards[1] = -1;
+    }
+
     // check revealed cards
     for (int i = 0; i < 2; i++)
     {
@@ -177,7 +183,7 @@ int main()
 
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
-    int iterations = 1;
+    int iterations = 10;
     for (int i = 0; i < iterations; i++)
     {
         // copy the game state to a test case
