@@ -192,13 +192,13 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         {
             tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer] - 1];
             state->deckCount[nextPlayer]--;
-            printf("deckCount--\n");
+            printf("deckCount = %d\n", state->deckCount[nextPlayer]);
         }
         else if (state->discardCount[nextPlayer] > 0)
         {
             tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer] - 1];
             state->discardCount[nextPlayer]--;
-            printf("discardCount--\n");
+            printf("discardCount = %d\n", state->discardCount[nextPlayer]);
         }
         else
         {
@@ -220,8 +220,8 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
                 state->deckCount[nextPlayer]++;
                 state->discard[nextPlayer][i] = -1;
                 state->discardCount[nextPlayer]--;
-                printf("deckCount++\n");
-                printf("discardCount--\n");
+                printf("deckCount = %d\n", state->deckCount[nextPlayer]);
+                printf("discardCount = %d\n", state->discardCount[nextPlayer]);
             }
 
             shuffle(nextPlayer, state); //Shuffle the deck

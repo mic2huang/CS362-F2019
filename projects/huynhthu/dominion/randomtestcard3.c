@@ -133,11 +133,11 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         printf("discardCardCountExpected = %d\n", discardCardCountExpected);
     }
 
-    if (testG->handCount[nextPlayer] != handCountExpected)
+    if (testG->handCount[thisPlayer] != handCountExpected)
     {
         handCountFailed++;
         thisTestResult = 0;
-        printf("testG->handCount[nextPlayer] = %d\n", testG->handCount[nextPlayer]);
+        printf("testG->handCount[thisPlayer] = %d\n", testG->handCount[thisPlayer]);
         printf("handCountExpected = %d\n", handCountExpected);
     }
 
