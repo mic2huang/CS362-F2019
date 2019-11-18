@@ -32,8 +32,7 @@ int i;
 
 void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, struct gameState *G)
 {
-    // call the test function
-    playTribute(thisPlayer, nextPlayer, testG);
+
     int handCountExpected = G->handCount[thisPlayer];
     int discardCardCountExpected = discardCountBefore;
     int deckCountExpected = deckCountBefore;
@@ -63,6 +62,9 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             }
         }
     }
+
+    // call the test function
+    playTribute(thisPlayer, nextPlayer, testG);
 
     // check revealed cards
     for (i = 0; i < 2; i++)
