@@ -67,7 +67,6 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             for (int i = 0; i < 2; i++)
             {
                 tributeRevealedCards[i] = testG->deck[nextPlayer][testG->deckCount[nextPlayer] - (i + 1)];
-                printf("else, assign Revealed card loop\n");
             }
         }
     }
@@ -78,7 +77,6 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     // check revealed cards
     for (int i = 0; i < 2; i++)
     {
-        printf("check Revealed card loop\n");
         if (tributeRevealedCards[i] > -1)
         {
             // reveal treasure card
@@ -138,12 +136,10 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     if (thisTestResult)
     {
         passed++;
-        printf("passed\n");
     }
     else
     {
         failed++;
-        printf("failed\n");
     }
 }
 
@@ -173,7 +169,7 @@ int main()
         // generate random number of discardCount and deckCount of next player
         testG.discardCount[nextPlayer] = rand() % 10;
         discardCountBefore = testG.discardCount[nextPlayer];
-        testG.deckCount[nextPlayer] = rand() % 10 + 1;
+        testG.deckCount[nextPlayer] = rand() % 10;
         deckCountBefore = testG.deckCount[nextPlayer];
 
         //generate random revealed card of next player
