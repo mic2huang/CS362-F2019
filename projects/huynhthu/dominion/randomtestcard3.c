@@ -46,10 +46,12 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         if (testG->deckCount[nextPlayer] > 0)
         {
             tributeRevealedCards[0] = testG->deck[nextPlayer][testG->deckCount[nextPlayer] - 1];
+            printf("deck > 0, tributeRevealedCards[0] = %d\n", tributeRevealedCards[0]);
         }
         else if (testG->discardCount[nextPlayer] > 0)
         {
             tributeRevealedCards[0] = testG->discard[nextPlayer][testG->discardCount[nextPlayer] - 1];
+            printf("discard > 0, tributeRevealedCards[0] = %d\n", tributeRevealedCards[0]);
         }
     }
     else
@@ -59,6 +61,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             for (i = 0; i < 2; i++)
             {
                 tributeRevealedCards[i] = testG->discard[nextPlayer][i];
+                printf("assign Revealed card loop\n");
             }
         }
     }
@@ -69,6 +72,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     // check revealed cards
     for (i = 0; i < 2; i++)
     {
+        printf("check Revealed card loop\n");
         if (tributeRevealedCards[i] > -1)
         {
             // reveal treasure card
