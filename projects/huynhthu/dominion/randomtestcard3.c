@@ -183,7 +183,7 @@ int main()
 
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
-    int iterations = 1;
+    int iterations = 10000;
     for (int i = 0; i < iterations; i++)
     {
         // copy the game state to a test case
