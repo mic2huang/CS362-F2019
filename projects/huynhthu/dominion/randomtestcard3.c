@@ -79,24 +79,24 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             // reveal treasure card
             if ((tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold))
             {
-                deckCountExpected = deckCountBefore - 1;
-                coinsExpected = G->handCount[thisPlayer] + xtraCoins;
+                deckCountExpected--;
+                coinsExpected += xtraCoins;
                 printf("TREASURE\n");
             }
 
             // reveal victory card
             else if ((tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall))
             {
-                discardCardCountExpected = discardCountBefore - 1;
-                handCountExpected = G->coins + xtraCards;
+                discardCardCountExpected--;
+                handCountExpected += xtraCards;
                 printf("VIC\n");
             }
 
             // reveal action card
             else
             {
-                discardCardCountExpected = discardCountBefore - 1;
-                actionsExpected = G->numActions + xtraActions;
+                discardCardCountExpected--;
+                actionsExpected += xtraActions;
                 printf("ACTION\n");
             }
         }
