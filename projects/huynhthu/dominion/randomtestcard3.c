@@ -188,9 +188,6 @@ int main()
         testG.deckCount[nextPlayer] = rand() % 10;
         deckCountBefore = testG.deckCount[nextPlayer];
 
-        //generate random revealed card of next player
-        testG.deck[nextPlayer][testG.deckCount[nextPlayer] - 1] = rand() % 27;
-
         testPlayTribute(thisPlayer, nextPlayer, &testG, &G);
     }
     printf("# total Tests: %d\n", passed + failed);
