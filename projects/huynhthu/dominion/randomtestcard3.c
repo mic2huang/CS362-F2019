@@ -44,12 +44,10 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         if (testG->deckCount[nextPlayer] > 0)
         {
             tributeRevealedCards[0] = testG->deck[nextPlayer][testG->deckCount[nextPlayer] - 1];
-            printf("deck > 0, tributeRevealedCards[0] = %d\n", tributeRevealedCards[0]);
         }
         else if (testG->discardCount[nextPlayer] > 0)
         {
             tributeRevealedCards[0] = testG->discard[nextPlayer][testG->discardCount[nextPlayer] - 1];
-            printf("discard > 0, tributeRevealedCards[0] = %d\n", tributeRevealedCards[0]);
         }
     }
     else
@@ -59,7 +57,6 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             for (int i = 0; i < 2; i++)
             {
                 tributeRevealedCards[i] = testG->discard[nextPlayer][i];
-                printf("deckCount = 0, assign Revealed card loop\n");
             }
         }
         else
@@ -84,6 +81,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             {
                 deckCountExpected = deckCountBefore - 1;
                 coinsExpected = G->handCount[thisPlayer] + xtraCoins;
+                printf("TREASURE\n");
             }
 
             // reveal victory card
@@ -91,6 +89,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             {
                 discardCardCountExpected = discardCountBefore - 1;
                 handCountExpected = G->coins + xtraCards;
+                printf("VIC\n");
             }
 
             // reveal action card
@@ -98,6 +97,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             {
                 discardCardCountExpected = discardCountBefore - 1;
                 actionsExpected = G->numActions + xtraActions;
+                printf("ACTION\n");
             }
         }
     }
@@ -107,30 +107,40 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     {
         deckCountFailed++;
         thisTestResult = 0;
+        printf("testG->deckCount[nextPlayer] = %d\n", testG->deckCount[nextPlayer]);
+        printf("deckCountExpected = %d\n", deckCountExpected);
     }
 
     if (testG->coins != coinsExpected)
     {
         coinsFailed++;
         thisTestResult = 0;
+        printf("testG->coins = %d\n", testG->coins);
+        printf("coinsExpected = %d\n", coinsExpected);
     }
 
     if (testG->discardCount[nextPlayer] != discardCardCountExpected)
     {
         discardCountFailed++;
         thisTestResult = 0;
+        printf("testG->discardCount[nextPlayer] = %d\n", testG->discardCount[nextPlayer]);
+        printf("discardCardCountExpected = %d\n", discardCardCountExpected);
     }
 
     if (testG->handCount[nextPlayer] != handCountExpected)
     {
         handCountFailed++;
         thisTestResult = 0;
+        printf("testG->handCount[nextPlayer] = %d\n", testG->handCount[nextPlayer]);
+        printf("handCountExpected = %d\n", handCountExpected);
     }
 
     if (testG->numActions != actionsExpected)
     {
         actionsFailed++;
         thisTestResult = 0;
+        printf("testG->numActions = %d\n", testG->numActions);
+        printf("actionsExpected = %d\n", actionsExpected);
     }
 
     if (thisTestResult)
@@ -161,7 +171,7 @@ int main()
 
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
-    int iterations = 20000;
+    int iterations = 10;
     for (int i = 0; i < iterations; i++)
     {
         // copy the game state to a test case
