@@ -30,6 +30,9 @@ int tributeRevealedCards[2] = {-1, -1};
 
 void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, struct gameState *G)
 {
+    int handCountExpected = G->handCount[thisPlayer];
+    int coinsExpected = G->coins;
+    int actionsExpected = G->numActions;
     int thisTestResult = 1;
     // check deckCount and discardCount to get revealed cards
     if ((testG->discardCount[nextPlayer] + testG->deckCount[nextPlayer]) <= 1)
@@ -78,21 +81,18 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             // reveal treasure card
             if ((tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold))
             {
-                deckCountExpected--;
                 coinsExpected += xtraCoins;
             }
 
             // reveal victory card
             else if ((tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall))
             {
-                discardCardCountExpected--;
                 handCountExpected += xtraCards;
             }
 
             // reveal action card
             else
             {
-                discardCardCountExpected--;
                 actionsExpected += xtraActions;
             }
         }
