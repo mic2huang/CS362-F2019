@@ -115,13 +115,13 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     }
 
     // test result
-    if (testG->deckCount[nextPlayer] != deckCountExpected)
-    {
-        deckCountFailed++;
-        thisTestResult = 0;
-        printf("testG->deckCount[nextPlayer] = %d\n", testG->deckCount[nextPlayer]);
-        printf("deckCountExpected = %d\n", deckCountExpected);
-    }
+    // if (testG->deckCount[nextPlayer] != deckCountExpected)
+    // {
+    //     deckCountFailed++;
+    //     thisTestResult = 0;
+    //     printf("testG->deckCount[nextPlayer] = %d\n", testG->deckCount[nextPlayer]);
+    //     printf("deckCountExpected = %d\n", deckCountExpected);
+    // }
 
     if (testG->coins != coinsExpected)
     {
@@ -131,13 +131,13 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         printf("coinsExpected = %d\n", coinsExpected);
     }
 
-    if (testG->discardCount[nextPlayer] != discardCardCountExpected)
-    {
-        discardCountFailed++;
-        thisTestResult = 0;
-        printf("testG->discardCount[nextPlayer] = %d\n", testG->discardCount[nextPlayer]);
-        printf("discardCardCountExpected = %d\n", discardCardCountExpected);
-    }
+    // if (testG->discardCount[nextPlayer] != discardCardCountExpected)
+    // {
+    //     discardCountFailed++;
+    //     thisTestResult = 0;
+    //     printf("testG->discardCount[nextPlayer] = %d\n", testG->discardCount[nextPlayer]);
+    //     printf("discardCardCountExpected = %d\n", discardCardCountExpected);
+    // }
 
     if (testG->handCount[thisPlayer] != handCountExpected)
     {
