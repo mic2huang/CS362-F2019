@@ -145,8 +145,6 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         failed++;
         printf("failed\n");
     }
-    loop++;
-    printf("loop = %d\n", loop);
 }
 
 int main()
