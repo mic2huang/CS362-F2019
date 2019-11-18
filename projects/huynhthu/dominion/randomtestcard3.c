@@ -59,7 +59,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         {
             for (int i = 0; i < 2; i++)
             {
-                tributeRevealedCards[i] = testG->discard[nextPlayer][i];
+                tributeRevealedCards[i] = testG->deck[nextPlayer][testG->deckCount[nextPlayer] - (i + 1)];
                 printf("deckCount = 0, assign Revealed card loop\n");
             }
         }
