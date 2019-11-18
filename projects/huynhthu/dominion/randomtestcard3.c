@@ -32,7 +32,8 @@ int i;
 
 void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, struct gameState *G)
 {
-    int loop = 0 int handCountExpected = G->handCount[thisPlayer];
+    int loop = 0;
+    int handCountExpected = G->handCount[thisPlayer];
     int discardCardCountExpected = discardCountBefore;
     int deckCountExpected = deckCountBefore;
     int coinsExpected = G->coins;
