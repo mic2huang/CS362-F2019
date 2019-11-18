@@ -22,27 +22,14 @@
 
 #define TESTFUNC "playTribute()"
 
-int passed = 0, failed = 0, handCountFailed = 0, discardCountFailed = 0, deckCountFailed = 0, coinsFailed = 0, actionsFailed = 0;
+int passed = 0, failed = 0, handCountFailed = 0, coinsFailed = 0, actionsFailed = 0;
 int xtraCoins = 2;
 int xtraCards = 2;
 int xtraActions = 2;
-int discardCountBefore = 0, deckCountBefore = 0;
 int tributeRevealedCards[2] = {-1, -1};
 
 void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, struct gameState *G)
 {
-    printf("BEGIN\n");
-    int handCountExpected = G->handCount[thisPlayer];
-    printf("handCountExpected = %d\n", handCountExpected);
-    int discardCardCountExpected = discardCountBefore;
-    printf("discardCardCountExpected = %d\n", discardCardCountExpected);
-    int deckCountExpected = deckCountBefore;
-    printf("deckCountExpected = %d\n", deckCountExpected);
-    int coinsExpected = G->coins;
-    printf("coinsExpected = %d\n", coinsExpected);
-    int actionsExpected = G->numActions;
-    printf("actionsExpected = %d\n\n", actionsExpected);
-
     int thisTestResult = 1;
     // check deckCount and discardCount to get revealed cards
     if ((testG->discardCount[nextPlayer] + testG->deckCount[nextPlayer]) <= 1)
@@ -93,7 +80,6 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             {
                 deckCountExpected--;
                 coinsExpected += xtraCoins;
-                printf("TREASURE\n");
             }
 
             // reveal victory card
@@ -101,7 +87,6 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             {
                 discardCardCountExpected--;
                 handCountExpected += xtraCards;
-                printf("VIC\n");
             }
 
             // reveal action card
@@ -109,19 +94,9 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
             {
                 discardCardCountExpected--;
                 actionsExpected += xtraActions;
-                printf("ACTION\n");
             }
         }
     }
-
-    // test result
-    // if (testG->deckCount[nextPlayer] != deckCountExpected)
-    // {
-    //     deckCountFailed++;
-    //     thisTestResult = 0;
-    //     printf("testG->deckCount[nextPlayer] = %d\n", testG->deckCount[nextPlayer]);
-    //     printf("deckCountExpected = %d\n", deckCountExpected);
-    // }
 
     if (testG->coins != coinsExpected)
     {
@@ -130,14 +105,6 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
         printf("testG->coins = %d\n", testG->coins);
         printf("coinsExpected = %d\n", coinsExpected);
     }
-
-    // if (testG->discardCount[nextPlayer] != discardCardCountExpected)
-    // {
-    //     discardCountFailed++;
-    //     thisTestResult = 0;
-    //     printf("testG->discardCount[nextPlayer] = %d\n", testG->discardCount[nextPlayer]);
-    //     printf("discardCardCountExpected = %d\n", discardCardCountExpected);
-    // }
 
     if (testG->handCount[thisPlayer] != handCountExpected)
     {
@@ -190,9 +157,7 @@ int main()
         memcpy(&testG, &G, sizeof(struct gameState));
         // generate random number of discardCount and deckCount of next player
         testG.discardCount[nextPlayer] = rand() % 10;
-        discardCountBefore = testG.discardCount[nextPlayer];
         testG.deckCount[nextPlayer] = rand() % 10;
-        deckCountBefore = testG.deckCount[nextPlayer];
 
         testPlayTribute(thisPlayer, nextPlayer, &testG, &G);
     }
@@ -200,8 +165,6 @@ int main()
     printf("# Passed Tests: %d\n", passed);
     printf("# Failed Tests: %d\n", failed);
     printf("# handCountFailed: %i\n", handCountFailed);
-    printf("# discardCountFailed: %i\n", discardCountFailed);
-    printf("# deckCountFailed: %i\n", deckCountFailed);
     printf("# coinsFailed: %i\n", coinsFailed);
     printf("# numOfActionsFailed: %i\n", actionsFailed);
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTFUNC);
