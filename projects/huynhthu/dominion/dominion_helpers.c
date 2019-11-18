@@ -237,24 +237,28 @@ int playTribute(int currentPlayer, int nextPlayer, struct gameState *state)
         state->playedCardCount++;
         tributeRevealedCards[1] = -1;
     }
-    // BUG loop 3 times instead of number of revealed card
-    for (i = 0; i <= 2; i++)
+    // BUG loop 3 times instead of number of revealed card (REMOVED in assignment 4)
+    //for (i = 0; i <= 2; i++)
+    for (i = 0; i < 2; i++)
     {
-        if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold)
-        { //Treasure cards
-            // BUG: add 4 coins instead of 2 (REMOVED in assignment 4)
-            state->coins += 2;
-        }
+        if (tributeRevealedCards[i] > -1)
+        {
+            if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold)
+            { //Treasure cards
+                // BUG: add 4 coins instead of 2 (REMOVED in assignment 4)
+                state->coins += 2;
+            }
 
-        else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall)
-        { //Victory Card Found
-            drawCard(currentPlayer, state);
-            drawCard(currentPlayer, state);
-        }
-        else
-        { //Action Card
-            //BUG: add 3 action cards instead of 2 (REMOVED in assignment 4)
-            state->numActions = state->numActions + 2;
+            else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall)
+            { //Victory Card Found
+                drawCard(currentPlayer, state);
+                drawCard(currentPlayer, state);
+            }
+            else
+            { //Action Card
+                //BUG: add 3 action cards instead of 2 (REMOVED in assignment 4)
+                state->numActions = state->numActions + 2;
+            }
         }
     }
 
