@@ -28,7 +28,6 @@ int xtraCards = 2;
 int xtraActions = 2;
 int discardCountBefore = 0, deckCountBefore = 0;
 int tributeRevealedCards[2] = {-1, -1};
-int i;
 
 void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, struct gameState *G)
 {
@@ -58,10 +57,18 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     {
         if (testG->deckCount[nextPlayer] == 0)
         {
-            for (i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 tributeRevealedCards[i] = testG->discard[nextPlayer][i];
-                printf("assign Revealed card loop\n");
+                printf("deckCount = 0, assign Revealed card loop\n");
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                tributeRevealedCards[i] = testG->deckCount[nextPlayer][i];
+                printf("else, assign Revealed card loop\n");
             }
         }
     }
@@ -70,7 +77,7 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     playTribute(thisPlayer, nextPlayer, testG);
 
     // check revealed cards
-    for (i = 0; i < 2; i++)
+    for (int i = 0; i < 2; i++)
     {
         printf("check Revealed card loop\n");
         if (tributeRevealedCards[i] > -1)
@@ -162,7 +169,7 @@ int main()
     printf("----------------- Testing function: %s ----------------\n", TESTFUNC);
 
     int iterations = 10000;
-    for (i = 0; i < iterations; i++)
+    for (int i = 0; i < iterations; i++)
     {
         // copy the game state to a test case
         memcpy(&testG, &G, sizeof(struct gameState));
