@@ -102,24 +102,18 @@ void testPlayTribute(int thisPlayer, int nextPlayer, struct gameState *testG, st
     {
         coinsFailed++;
         thisTestResult = 0;
-        printf("testG->coins = %d\n", testG->coins);
-        printf("coinsExpected = %d\n", coinsExpected);
     }
 
     if (testG->handCount[thisPlayer] != handCountExpected)
     {
         handCountFailed++;
         thisTestResult = 0;
-        printf("testG->handCount[thisPlayer] = %d\n", testG->handCount[thisPlayer]);
-        printf("handCountExpected = %d\n", handCountExpected);
     }
 
     if (testG->numActions != actionsExpected)
     {
         actionsFailed++;
         thisTestResult = 0;
-        printf("testG->numActions = %d\n", testG->numActions);
-        printf("actionsExpected = %d\n\n", actionsExpected);
     }
 
     if (thisTestResult)
