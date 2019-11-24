@@ -902,6 +902,8 @@ int playAmbassador(struct gameState *state, int handPos, int choice1, int choice
         {
             /* ASSIGNMENT 2 - 4 - AMBASSADOR - BUG 1 - FORGET INC J */
             j++; // REMOVED in Assignment 5 - huynhthu
+            printf("i = %d\n", i);
+            printf("state->hand[currentPlayer][choice1] = %d\n", state->hand[currentPlayer][choice1]);
         }
     }
     printf("j = %d\n", j);
