@@ -1036,7 +1036,6 @@ int playTribute(struct gameState *state, int *tributeRevealedCards)
         { // victory Card Found
             drawCard(currentPlayer, state);
             drawCard(currentPlayer, state);
-            printf("DRAW 2 CARDS\n");
         }
         else
         { // action Card
