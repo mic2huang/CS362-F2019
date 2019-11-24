@@ -904,7 +904,7 @@ int playAmbassador(struct gameState *state, int handPos, int choice1, int choice
             j++; // REMOVED in Assignment 5 - huynhthu
         }
     }
-
+    printf("j = %d\n", j);
     if (j < choice2)
         return -1;
 
