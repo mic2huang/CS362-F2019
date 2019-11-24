@@ -88,21 +88,17 @@ int main()
 
     // set extra buys and extra coins
     xtraActions = 1;
-    xtraCoins = 4;
+    xtraCoins = 0;
 
     printf("1. Hand count = %d\n", testG.handCount[thisPlayer]);
     printf("Expected = %d\n", 4);
     testResult(testG.handCount[thisPlayer], 4);
 
-    printf("2. Coins = %d\n", testG.coins);
-    printf("Expected = %d\n", G.coins + xtraCoins);
-    testResult(testG.coins, G.coins + xtraCoins);
-
-    printf("3. Num of actions = %d\n", testG.numActions);
+    printf("2. Num of actions = %d\n", testG.numActions);
     printf("Expected = %d\n", G.numActions + xtraActions);
     testResult(testG.numActions, G.numActions + xtraActions);
 
-    printf("4. Other player hand count = %d\n", testG.handCount[thisPlayer + 1]);
+    printf("3. Other player hand count = %d\n", testG.handCount[thisPlayer + 1]);
     printf("Expected = %d\n", 4);
     testResult(testG.handCount[thisPlayer + 1], 4);
 
