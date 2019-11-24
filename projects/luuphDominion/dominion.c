@@ -798,7 +798,7 @@ int playBaron(struct gameState *state, int choice1)
                 }
 
                 /* ASSIGNMENT 2 - 4 - BARON - BUG 1 - CAUSES INFINITE LOOPS */
-                card_not_discarded = 0; // exit the loop */ (REMOVED in Assignment 5 - huynhthu)
+                //card_not_discarded = 0; // exit the loop */ (REMOVED in Assignment 5 - huynhthu)
             }
             else
             {
