@@ -901,7 +901,7 @@ int playAmbassador(struct gameState *state, int handPos, int choice1, int choice
             i != choice1)
         {
             /* ASSIGNMENT 2 - 4 - AMBASSADOR - BUG 1 - FORGET INC J */
-            /* j++; */
+            j++; // REMOVED in Assignment 5 - huynhthu
         }
     }
 
