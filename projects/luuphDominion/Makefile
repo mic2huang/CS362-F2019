@@ -52,13 +52,13 @@ rununittests: unittest1 unittest2 unittest3 unittest4 unittest5
 	cat dominion_helpers.c.gcov >> unittestresult.out
 
 randomtestcard1: randomtestcard1.c dominion.o rngs.o
-	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o dominion_helpers.o $(CFLAGS)
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
 
 randomtestcard2: randomtestcard2.c dominion.o rngs.o
-	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o dominion_helpers.o $(CFLAGS)
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
 
 randomtestcard3: randomtestcard3.c dominion.o rngs.o
-	gcc -o randomtestcard3 -g  randomtestcard3.c dominion.o rngs.o dominion_helpers.o $(CFLAGS)
+	gcc -o randomtestcard3 -g  randomtestcard3.c dominion.o rngs.o $(CFLAGS)
 
 runrandomtests: randomtestcard1 randomtestcard2 randomtestcard3
 	./randomtestcard1
