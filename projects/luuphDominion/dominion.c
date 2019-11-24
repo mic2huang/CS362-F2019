@@ -1541,4 +1541,16 @@ int updateCoins(int player, struct gameState *state, int bonus)
     return 0;
 }
 
+void testResult(int a, int b)
+{
+    if (a == b)
+    {
+        printf("Pass.\n");
+    }
+    else
+    {
+        printf("Fail.\n");
+    }
+}
+
 //end of dominion.c
