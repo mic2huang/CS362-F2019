@@ -48,8 +48,8 @@ rununittests: unittest1 unittest2 unittest3 unittest4 unittest5
 	./unittest3 >> unittestresult.out
 	./unittest4 >> unittestresult.out
 	./unittest5 >> unittestresult.out
-	gcov -b -f dominion_helpers.c >> unittestresult.out
-	cat dominion_helpers.c.gcov >> unittestresult.out
+	gcov -b -f dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
 
 randomtestcard1: randomtestcard1.c dominion.o rngs.o
 	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
@@ -64,8 +64,8 @@ runrandomtests: randomtestcard1 randomtestcard2 randomtestcard3
 	./randomtestcard1
 	./randomtestcard2
 	./randomtestcard3
-	gcov -b -f dominion_helpers.c > randomtestresult.out
-	cat dominion_helpers.c.gcov >> randomtestresult.out
+	gcov -b -f dominion.c > randomtestresult.out
+	cat dominion.c.gcov >> randomtestresult.out
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 unittest5 randomtestcard1 randomtestcard2 randomtestcard3
